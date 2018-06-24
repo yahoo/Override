@@ -1,0 +1,834 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		59A846C63F5212A66186CC63 /* Pods_Override_Example_Override_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3CED889F2F6DF5152709BE /* Pods_Override_Example_Override_Tests.framework */; };
+		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
+		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
+		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
+		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
+		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
+		607FACEC1AFB9204008FA782 /* TestHelpersSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* TestHelpersSpec.swift */; };
+		82E04AA930E6FDC88FBDE263 /* Pods_Override_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49BF07D0F2B1010827068827 /* Pods_Override_Example.framework */; };
+		8FC2E87CED5EC4DA704E2583 /* Pods_Override_Example_TV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CC54DB1DF773A73D720C5BA /* Pods_Override_Example_TV.framework */; };
+		FC0A3135212E6E7D0064DD5E /* FeaturesViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0A3133212E6E580064DD5E /* FeaturesViewControllerSpec.swift */; };
+		FC321D6E20E1682D000EE23D /* MyFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4D5B2F20DF4FC800689492 /* MyFeatures.swift */; };
+		FC4D5B3020DF4FC800689492 /* MyFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4D5B2F20DF4FC800689492 /* MyFeatures.swift */; };
+		FC58429E21BB2D5200DEF576 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC58429D21BB2D5200DEF576 /* AppDelegate.swift */; };
+		FC5842A021BB2D5200DEF576 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC58429F21BB2D5200DEF576 /* ViewController.swift */; };
+		FC5842A321BB2D5200DEF576 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC5842A121BB2D5200DEF576 /* Main.storyboard */; };
+		FC5842A521BB2D5300DEF576 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC5842A421BB2D5300DEF576 /* Assets.xcassets */; };
+		FC5842AB21BB2DE800DEF576 /* MyFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5842AA21BB2DE800DEF576 /* MyFeatures.swift */; };
+		FC5842CF21BEBFBD00DEF576 /* OverrideStateSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5842CD21BEBFB600DEF576 /* OverrideStateSpec.swift */; };
+		FC5842D121BEC71F00DEF576 /* FeatureSwitchCellSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5842D021BEC71F00DEF576 /* FeatureSwitchCellSpec.swift */; };
+		FCAA3B6B2229E6D5009973B8 /* FeaturesTableViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAA3B6A2229E6D5009973B8 /* FeaturesTableViewControllerSpec.swift */; };
+		FCAA3B6D2229EA89009973B8 /* FeaturesInteractorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAA3B6C2229EA89009973B8 /* FeaturesInteractorSpec.swift */; };
+		FCF83C3620FFC84E00A6197F /* FeatureRegistrySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF83C3520FFC84E00A6197F /* FeatureRegistrySpec.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		607FACE61AFB9204008FA782 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 607FACC81AFB9204008FA782 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 607FACCF1AFB9204008FA782;
+			remoteInfo = Override;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1CC54DB1DF773A73D720C5BA /* Pods_Override_Example_TV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Override_Example_TV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49BF07D0F2B1010827068827 /* Pods_Override_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Override_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D3CED889F2F6DF5152709BE /* Pods_Override_Example_Override_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Override_Example_Override_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		607FACD01AFB9204008FA782 /* Override_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Override_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		607FACE51AFB9204008FA782 /* Override_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Override_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		607FACEB1AFB9204008FA782 /* TestHelpersSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpersSpec.swift; sourceTree = "<group>"; };
+		89135546B2DB81A1109E10E1 /* Pods-Override_Example-TV.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Override_Example-TV.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Override_Example-TV/Pods-Override_Example-TV.debug.xcconfig"; sourceTree = "<group>"; };
+		8FF7EB1726DB89CFD9720FF3 /* Pods-Override_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Override_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Override_Example/Pods-Override_Example.release.xcconfig"; sourceTree = "<group>"; };
+		95E99DEE52ABFEA60967E01C /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		AA690D00943424C115A3DB63 /* Pods-Override_Example-Override_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Override_Example-Override_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Override_Example-Override_Tests/Pods-Override_Example-Override_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		AA6FDF387A56CD7003F13414 /* Pods_Override_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Override_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B65E77CA8BE4B8DBFC4566CE /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		B8948B7CBD053673DD68899B /* Pods-Override_Example-TV.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Override_Example-TV.release.xcconfig"; path = "Pods/Target Support Files/Pods-Override_Example-TV/Pods-Override_Example-TV.release.xcconfig"; sourceTree = "<group>"; };
+		C24CE5EB3B782F8A6F2DCEAA /* Override.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Override.podspec; path = ../Override.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		CCBF3821509952445173837A /* Pods-Override_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Override_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Override_Example/Pods-Override_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		E6C2983A241F1F1B5AC79042 /* Pods-Override_Example-Override_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Override_Example-Override_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Override_Example-Override_Tests/Pods-Override_Example-Override_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		FC0A3133212E6E580064DD5E /* FeaturesViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturesViewControllerSpec.swift; sourceTree = "<group>"; };
+		FC4D5B2F20DF4FC800689492 /* MyFeatures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFeatures.swift; sourceTree = "<group>"; };
+		FC58429B21BB2D5100DEF576 /* Override_Example-TV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Override_Example-TV.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC58429D21BB2D5200DEF576 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FC58429F21BB2D5200DEF576 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FC5842A221BB2D5200DEF576 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FC5842A421BB2D5300DEF576 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FC5842A621BB2D5300DEF576 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC5842AA21BB2DE800DEF576 /* MyFeatures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFeatures.swift; sourceTree = "<group>"; };
+		FC5842CD21BEBFB600DEF576 /* OverrideStateSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverrideStateSpec.swift; sourceTree = "<group>"; };
+		FC5842D021BEC71F00DEF576 /* FeatureSwitchCellSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureSwitchCellSpec.swift; sourceTree = "<group>"; };
+		FC5842D521BECA4D00DEF576 /* ReferenceImages */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ReferenceImages; sourceTree = "<group>"; };
+		FCAA3B6A2229E6D5009973B8 /* FeaturesTableViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturesTableViewControllerSpec.swift; sourceTree = "<group>"; };
+		FCAA3B6C2229EA89009973B8 /* FeaturesInteractorSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturesInteractorSpec.swift; sourceTree = "<group>"; };
+		FCC4F5A22107E654002AA384 /* OverrideTestSupport.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; name = OverrideTestSupport.podspec; path = ../OverrideTestSupport.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		FCF83C3520FFC84E00A6197F /* FeatureRegistrySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureRegistrySpec.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		607FACCD1AFB9204008FA782 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82E04AA930E6FDC88FBDE263 /* Pods_Override_Example.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		607FACE21AFB9204008FA782 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				59A846C63F5212A66186CC63 /* Pods_Override_Example_Override_Tests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC58429821BB2D5100DEF576 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FC2E87CED5EC4DA704E2583 /* Pods_Override_Example_TV.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		607FACC71AFB9204008FA782 = {
+			isa = PBXGroup;
+			children = (
+				607FACF51AFB993E008FA782 /* Podspec Metadata */,
+				607FACD21AFB9204008FA782 /* Example for Override */,
+				607FACE81AFB9204008FA782 /* Tests */,
+				FC58429C21BB2D5200DEF576 /* TV Example for Override */,
+				607FACD11AFB9204008FA782 /* Products */,
+				B273709E84D178251D69565B /* Pods */,
+				DDBCFC4DB556FBF3CE3E3546 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		607FACD11AFB9204008FA782 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				607FACD01AFB9204008FA782 /* Override_Example.app */,
+				607FACE51AFB9204008FA782 /* Override_Tests.xctest */,
+				FC58429B21BB2D5100DEF576 /* Override_Example-TV.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		607FACD21AFB9204008FA782 /* Example for Override */ = {
+			isa = PBXGroup;
+			children = (
+				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
+				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				FC4D5B2F20DF4FC800689492 /* MyFeatures.swift */,
+				607FACD91AFB9204008FA782 /* Main.storyboard */,
+				607FACDC1AFB9204008FA782 /* Images.xcassets */,
+				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
+				607FACD31AFB9204008FA782 /* Supporting Files */,
+			);
+			name = "Example for Override";
+			path = Override;
+			sourceTree = "<group>";
+		};
+		607FACD31AFB9204008FA782 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				607FACD41AFB9204008FA782 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		607FACE81AFB9204008FA782 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				607FACEB1AFB9204008FA782 /* TestHelpersSpec.swift */,
+				FCAA3B6A2229E6D5009973B8 /* FeaturesTableViewControllerSpec.swift */,
+				FCAA3B6C2229EA89009973B8 /* FeaturesInteractorSpec.swift */,
+				FCF83C3520FFC84E00A6197F /* FeatureRegistrySpec.swift */,
+				FC0A3133212E6E580064DD5E /* FeaturesViewControllerSpec.swift */,
+				FC5842D021BEC71F00DEF576 /* FeatureSwitchCellSpec.swift */,
+				FC5842CD21BEBFB600DEF576 /* OverrideStateSpec.swift */,
+				FC5842D521BECA4D00DEF576 /* ReferenceImages */,
+				607FACE91AFB9204008FA782 /* Supporting Files */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		607FACE91AFB9204008FA782 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				607FACEA1AFB9204008FA782 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		607FACF51AFB993E008FA782 /* Podspec Metadata */ = {
+			isa = PBXGroup;
+			children = (
+				C24CE5EB3B782F8A6F2DCEAA /* Override.podspec */,
+				FCC4F5A22107E654002AA384 /* OverrideTestSupport.podspec */,
+				95E99DEE52ABFEA60967E01C /* README.md */,
+				B65E77CA8BE4B8DBFC4566CE /* LICENSE */,
+			);
+			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		B273709E84D178251D69565B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CCBF3821509952445173837A /* Pods-Override_Example.debug.xcconfig */,
+				8FF7EB1726DB89CFD9720FF3 /* Pods-Override_Example.release.xcconfig */,
+				AA690D00943424C115A3DB63 /* Pods-Override_Example-Override_Tests.debug.xcconfig */,
+				E6C2983A241F1F1B5AC79042 /* Pods-Override_Example-Override_Tests.release.xcconfig */,
+				89135546B2DB81A1109E10E1 /* Pods-Override_Example-TV.debug.xcconfig */,
+				B8948B7CBD053673DD68899B /* Pods-Override_Example-TV.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		DDBCFC4DB556FBF3CE3E3546 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				49BF07D0F2B1010827068827 /* Pods_Override_Example.framework */,
+				AA6FDF387A56CD7003F13414 /* Pods_Override_Tests.framework */,
+				5D3CED889F2F6DF5152709BE /* Pods_Override_Example_Override_Tests.framework */,
+				1CC54DB1DF773A73D720C5BA /* Pods_Override_Example_TV.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FC58429C21BB2D5200DEF576 /* TV Example for Override */ = {
+			isa = PBXGroup;
+			children = (
+				FC58429D21BB2D5200DEF576 /* AppDelegate.swift */,
+				FC58429F21BB2D5200DEF576 /* ViewController.swift */,
+				FC5842AA21BB2DE800DEF576 /* MyFeatures.swift */,
+				FC5842A121BB2D5200DEF576 /* Main.storyboard */,
+				FC5842A421BB2D5300DEF576 /* Assets.xcassets */,
+				FC5842A621BB2D5300DEF576 /* Info.plist */,
+			);
+			path = "TV Example for Override";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		607FACCF1AFB9204008FA782 /* Override_Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Override_Example" */;
+			buildPhases = (
+				74A4BA36F0DE8DB09CA4E5F2 /* [CP] Check Pods Manifest.lock */,
+				FC47C71B20F93C8A00693B3C /* ShellScript */,
+				607FACCC1AFB9204008FA782 /* Sources */,
+				607FACCD1AFB9204008FA782 /* Frameworks */,
+				607FACCE1AFB9204008FA782 /* Resources */,
+				39A601C3B90FF6B616B72EFE /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Override_Example;
+			productName = Override;
+			productReference = 607FACD01AFB9204008FA782 /* Override_Example.app */;
+			productType = "com.apple.product-type.application";
+		};
+		607FACE41AFB9204008FA782 /* Override_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Override_Tests" */;
+			buildPhases = (
+				A57A3FFB0E9112911EDD2BD3 /* [CP] Check Pods Manifest.lock */,
+				607FACE11AFB9204008FA782 /* Sources */,
+				607FACE21AFB9204008FA782 /* Frameworks */,
+				DC6C1A3162C17CC1266EF234 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				607FACE71AFB9204008FA782 /* PBXTargetDependency */,
+			);
+			name = Override_Tests;
+			productName = Tests;
+			productReference = 607FACE51AFB9204008FA782 /* Override_Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FC58429A21BB2D5100DEF576 /* Override_Example-TV */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC5842A921BB2D5300DEF576 /* Build configuration list for PBXNativeTarget "Override_Example-TV" */;
+			buildPhases = (
+				E0F41382C0B4408ED76BD8AB /* [CP] Check Pods Manifest.lock */,
+				FC58429721BB2D5100DEF576 /* Sources */,
+				FC58429821BB2D5100DEF576 /* Frameworks */,
+				FC58429921BB2D5100DEF576 /* Resources */,
+				A6E0AB78EB034AFC3C6D677A /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Override_Example-TV";
+			productName = "Override_Example-TV";
+			productReference = FC58429B21BB2D5100DEF576 /* Override_Example-TV.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		607FACC81AFB9204008FA782 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = "";
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = "Oath, Inc";
+				TargetAttributes = {
+					607FACCF1AFB9204008FA782 = {
+						CreatedOnToolsVersion = 6.3.1;
+						LastSwiftMigration = 0900;
+					};
+					607FACE41AFB9204008FA782 = {
+						CreatedOnToolsVersion = 6.3.1;
+						LastSwiftMigration = 0900;
+						TestTargetID = 607FACCF1AFB9204008FA782;
+					};
+					FC58429A21BB2D5100DEF576 = {
+						CreatedOnToolsVersion = 10.1;
+						DevelopmentTeam = 2ARNJY38FW;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "Override" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 607FACC71AFB9204008FA782;
+			productRefGroup = 607FACD11AFB9204008FA782 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				607FACCF1AFB9204008FA782 /* Override_Example */,
+				607FACE41AFB9204008FA782 /* Override_Tests */,
+				FC58429A21BB2D5100DEF576 /* Override_Example-TV */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		607FACCE1AFB9204008FA782 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
+				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
+				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC58429921BB2D5100DEF576 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC5842A521BB2D5300DEF576 /* Assets.xcassets in Resources */,
+				FC5842A321BB2D5200DEF576 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		39A601C3B90FF6B616B72EFE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Override_Example/Pods-Override_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Override-iOS/Override.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Override.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Override_Example/Pods-Override_Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		74A4BA36F0DE8DB09CA4E5F2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Override_Example-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A57A3FFB0E9112911EDD2BD3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Override_Example-Override_Tests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A6E0AB78EB034AFC3C6D677A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Override_Example-TV/Pods-Override_Example-TV-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Override-tvOS/Override.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Override.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Override_Example-TV/Pods-Override_Example-TV-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DC6C1A3162C17CC1266EF234 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Override_Example-Override_Tests/Pods-Override_Example-Override_Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Override-iOS/Override.framework",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Nimble-Snapshots/Nimble_Snapshots.framework",
+				"${BUILT_PRODUCTS_DIR}/OverrideTestSupport/OverrideTestSupport.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+				"${BUILT_PRODUCTS_DIR}/iOSSnapshotTestCase/FBSnapshotTestCase.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Override.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble_Snapshots.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OverrideTestSupport.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSnapshotTestCase.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Override_Example-Override_Tests/Pods-Override_Example-Override_Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E0F41382C0B4408ED76BD8AB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Override_Example-TV-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FC47C71B20F93C8A00693B3C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    cd \"${PROJECT_DIR}/../Source\"\n    \"${PODS_ROOT}/SwiftLint/swiftlint\"\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		607FACCC1AFB9204008FA782 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				FC4D5B3020DF4FC800689492 /* MyFeatures.swift in Sources */,
+				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		607FACE11AFB9204008FA782 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC5842CF21BEBFBD00DEF576 /* OverrideStateSpec.swift in Sources */,
+				FC0A3135212E6E7D0064DD5E /* FeaturesViewControllerSpec.swift in Sources */,
+				FCAA3B6B2229E6D5009973B8 /* FeaturesTableViewControllerSpec.swift in Sources */,
+				FC321D6E20E1682D000EE23D /* MyFeatures.swift in Sources */,
+				FCAA3B6D2229EA89009973B8 /* FeaturesInteractorSpec.swift in Sources */,
+				FC5842D121BEC71F00DEF576 /* FeatureSwitchCellSpec.swift in Sources */,
+				FCF83C3620FFC84E00A6197F /* FeatureRegistrySpec.swift in Sources */,
+				607FACEC1AFB9204008FA782 /* TestHelpersSpec.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC58429721BB2D5100DEF576 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC5842A021BB2D5200DEF576 /* ViewController.swift in Sources */,
+				FC5842AB21BB2DE800DEF576 /* MyFeatures.swift in Sources */,
+				FC58429E21BB2D5200DEF576 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		607FACE71AFB9204008FA782 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 607FACCF1AFB9204008FA782 /* Override_Example */;
+			targetProxy = 607FACE61AFB9204008FA782 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		607FACD91AFB9204008FA782 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				607FACDA1AFB9204008FA782 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		607FACDE1AFB9204008FA782 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				607FACDF1AFB9204008FA782 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		FC5842A121BB2D5200DEF576 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FC5842A221BB2D5200DEF576 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		607FACED1AFB9204008FA782 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		607FACEE1AFB9204008FA782 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		607FACF01AFB9204008FA782 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CCBF3821509952445173837A /* Pods-Override_Example.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Override/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MODULE_NAME = ExampleApp;
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"DEBUG\"";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yahoo.Override-Example";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+			};
+			name = Debug;
+		};
+		607FACF11AFB9204008FA782 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8FF7EB1726DB89CFD9720FF3 /* Pods-Override_Example.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Override/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MODULE_NAME = ExampleApp;
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"DEBUG\"";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yahoo.Override-Example";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+			};
+			name = Release;
+		};
+		607FACF31AFB9204008FA782 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA690D00943424C115A3DB63 /* Pods-Override_Example-Override_Tests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Override_Example.app/Override_Example";
+			};
+			name = Debug;
+		};
+		607FACF41AFB9204008FA782 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E6C2983A241F1F1B5AC79042 /* Pods-Override_Example-Override_Tests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Override_Example.app/Override_Example";
+			};
+			name = Release;
+		};
+		FC5842A721BB2D5300DEF576 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 89135546B2DB81A1109E10E1 /* Pods-Override_Example-TV.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 2ARNJY38FW;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "TV Example for Override/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yahoo.Override-Example-TV";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Debug;
+		};
+		FC5842A821BB2D5300DEF576 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B8948B7CBD053673DD68899B /* Pods-Override_Example-TV.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2ARNJY38FW;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "TV Example for Override/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yahoo.Override-Example-TV";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "Override" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				607FACED1AFB9204008FA782 /* Debug */,
+				607FACEE1AFB9204008FA782 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Override_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				607FACF01AFB9204008FA782 /* Debug */,
+				607FACF11AFB9204008FA782 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Override_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				607FACF31AFB9204008FA782 /* Debug */,
+				607FACF41AFB9204008FA782 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FC5842A921BB2D5300DEF576 /* Build configuration list for PBXNativeTarget "Override_Example-TV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC5842A721BB2D5300DEF576 /* Debug */,
+				FC5842A821BB2D5300DEF576 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 607FACC81AFB9204008FA782 /* Project object */;
+}

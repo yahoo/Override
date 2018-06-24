@@ -1,0 +1,12 @@
+use_frameworks!
+platform :ios, '11.0'
+
+target 'Example-ObjC' do
+  pod 'Override', :path => '../'
+
+    target 'Example-ObjCTests' do
+        pod 'OverrideTestSupport', :path => '../'
+        pod 'Specta', '~> 1.0'
+        pod 'Expecta', '~> 1.0'
+    end
+end
