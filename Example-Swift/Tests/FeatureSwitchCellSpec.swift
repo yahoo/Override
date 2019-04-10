@@ -1,7 +1,7 @@
 // Copyright 2019, Oath Inc.
 // Licensed under the terms of the MIT license. See LICENSE file in https://github.com/yahoo/Override for terms.
 
-@testable import Override
+@testable import YMOverride
 import Quick
 import Nimble
 import Nimble_Snapshots

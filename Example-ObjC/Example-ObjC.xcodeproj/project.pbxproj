@@ -287,16 +287,16 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Example-ObjC/Pods-Example-ObjC-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Override/Override.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Example-ObjC/Pods-Example-ObjC-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/YMOverride/YMOverride.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Override.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YMOverride.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Example-ObjC/Pods-Example-ObjC-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Example-ObjC/Pods-Example-ObjC-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E0DFFC038490E6D5FA675AC3 /* [CP] Embed Pods Frameworks */ = {
@@ -305,22 +305,22 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Example-ObjC-Example-ObjCTests/Pods-Example-ObjC-Example-ObjCTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Override/Override.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Example-ObjC-Example-ObjCTests/Pods-Example-ObjC-Example-ObjCTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/YMOverride/YMOverride.framework",
 				"${BUILT_PRODUCTS_DIR}/Expecta/Expecta.framework",
-				"${BUILT_PRODUCTS_DIR}/OverrideTestSupport/OverrideTestSupport.framework",
 				"${BUILT_PRODUCTS_DIR}/Specta/Specta.framework",
+				"${BUILT_PRODUCTS_DIR}/YMOverrideTestSupport/YMOverrideTestSupport.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Override.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YMOverride.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Expecta.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OverrideTestSupport.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Specta.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YMOverrideTestSupport.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Example-ObjC-Example-ObjCTests/Pods-Example-ObjC-Example-ObjCTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Example-ObjC-Example-ObjCTests/Pods-Example-ObjC-Example-ObjCTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

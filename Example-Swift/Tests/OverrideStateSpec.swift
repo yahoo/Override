@@ -3,8 +3,8 @@
 
 import Quick
 import Nimble
-@testable import Override
-import OverrideTestSupport
+@testable import YMOverride
+import YMOverrideTestSupport
 
 class OverrideStateSpec: QuickSpec {
     override func spec() {

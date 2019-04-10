@@ -1,17 +1,17 @@
 PODS:
   - Expecta (1.0.6)
-  - Override (1.1.2):
-    - Override/Features (= 1.1.2)
-  - Override/Features (1.1.2)
-  - OverrideTestSupport (1.1.2):
-    - Override (= 1.1.2)
   - Specta (1.0.7)
+  - YMOverride (2.0.0):
+    - YMOverride/Features (= 2.0.0)
+  - YMOverride/Features (2.0.0)
+  - YMOverrideTestSupport (2.0.0):
+    - YMOverride (= 2.0.0)
 
 DEPENDENCIES:
   - Expecta (~> 1.0)
-  - Override (from `../`)
-  - OverrideTestSupport (from `../`)
   - Specta (~> 1.0)
+  - YMOverride (from `../`)
+  - YMOverrideTestSupport (from `../`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -19,17 +19,17 @@ SPEC REPOS:
     - Specta
 
 EXTERNAL SOURCES:
-  Override:
+  YMOverride:
     :path: "../"
-  OverrideTestSupport:
+  YMOverrideTestSupport:
     :path: "../"
 
 SPEC CHECKSUMS:
   Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
-  Override: 47dd9518f1194b281094db1cd5cb6a0ecf27c1cf
-  OverrideTestSupport: f47690c6f0e4ef37bf209ec5e508cbf6a3ff5007
   Specta: 3e1bd89c3517421982dc4d1c992503e48bd5fe66
+  YMOverride: b584055b1d78b4556cb313b78c71f16ab4c2b675
+  YMOverrideTestSupport: 5f137d817e6b6d27810a0285014fa2d18fa8f495
 
-PODFILE CHECKSUM: f99d97295040db06bf7edeaf6f0899287e85bee8
+PODFILE CHECKSUM: 495a2ba7eaf053a88228f4d500ace45e59e5cfb3
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.1

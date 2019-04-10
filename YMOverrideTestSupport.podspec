@@ -7,9 +7,9 @@
 #
 
 Pod::Spec.new do |s|
-    s.name             = 'OverrideTestSupport'
+    s.name             = 'YMOverrideTestSupport'
     s.version          = '2.0.0'
-    s.summary          = 'Test support helpers for Override feature management pod'
+    s.summary          = 'Test support helpers for YMOverride feature management'
     s.description      = <<-DESC
     This pod provides test support facilities for the Override pod.
     DESC
@@ -27,5 +27,5 @@ Pod::Spec.new do |s|
     s.source_files = 'Source/TestSupport/*.{swift,h}'
 
     # Require the version of OverrideTestSupport to match the version of Override
-    s.dependency 'Override', '=' + s.version.to_s
+    s.dependency 'YMOverride', '=' + s.version.to_s
 end

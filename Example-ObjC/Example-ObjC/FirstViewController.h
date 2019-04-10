@@ -3,7 +3,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Example_ObjC-Swift.h"
-@import Override;
+@import YMOverride;
 
 @interface FirstViewController : UIViewController
 

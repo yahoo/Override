@@ -4,7 +4,7 @@
 import Foundation
 import Quick
 import Nimble
-@testable import Override
+@testable import YMOverride
 
 fileprivate struct TestLabeledFeatureItem: LabeledFeatureItem {
     let label: String
