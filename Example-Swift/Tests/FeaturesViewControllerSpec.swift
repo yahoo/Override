@@ -4,7 +4,7 @@
 import Quick
 import Nimble
 import Nimble_Snapshots
-@testable import Override
+@testable import YMOverride
 
 class FeaturesViewControllerSpec: QuickSpec {
 

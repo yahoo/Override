@@ -3,7 +3,7 @@
 
 import Quick
 import Nimble
-import OverrideTestSupport
+import YMOverrideTestSupport
 
 class TestHelpersSpec: QuickSpec {
 

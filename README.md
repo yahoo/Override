@@ -24,7 +24,7 @@ Feature flags typically have 3 states: on, off, or defaulted. The default state 
 
 CocoaPods is a dependency manager for Cocoa projects. For usage and installation instructions, [visit their website](https://cocoapods.org). To integrate Override into your Xcode project using CocoaPods, specify it in your Podfile:
 
-`pod 'Override', '~> 1.0'`
+`pod 'YMOverride', '~> 1.0'`
 
 ## Usage
 
@@ -35,6 +35,8 @@ To use Override, you need a subclass of FeatureRegistry. Override will examine y
 Let's create a basic feature called "blueText" which turns all text blue when enabled. To do this, add a property called `blueText` to your feature registry:
 
 ```swift
+import YMOverride
+
 @objc class Features : FeatureRegistry {
 
     @objc let blueText = Feature()
@@ -47,7 +49,7 @@ There is a heck of a lot provided by this simple class, but we'll get into that 
 class ViewController : UIViewController {
 
     let myFeatures = Features()
-    
+
     let label = UILabel()
 
     override func viewWillAppear(_ animated: Bool) {
@@ -56,7 +58,7 @@ class ViewController : UIViewController {
         self.view.addSubview(label)
         label.frame = view.frame
         label.text = "Hello World!"
-        
+
         // Update text color based on feature flag
         label.textColor = myFeatures.blueText ? .blue : .green
     }
@@ -104,7 +106,7 @@ Let's create a feature that is normally off, and turned on only for debugging:
 @objc class Features : FeatureRegistry {
 
     @objc let blueText = Feature()
-    
+
     @obj let debugLogging = Feature(defaultState: false)
 }
 ```
@@ -117,9 +119,9 @@ It would be fantastic if all of our feature flags took effect immediately. In re
 @objc class Features : FeatureRegistry {
 
     @objc let blueText = Feature()
-    
+
     @obj let debugLogging = Feature(defaultState: false)
-    
+
     @objc let useTabBarNav = Feature(requiresRestart: true) 
 }
 ```
@@ -134,11 +136,11 @@ Sometimes, there is a need for a feature which defaults to on or off depending o
 @objc class Features : FeatureRegistry {
 
     @objc let blueText = Feature()
-    
+
     @obj let debugLogging = Feature(defaultState: false)
-    
+
     @objc let useTabBarNav = Feature(requiresRestart: true) 
-    
+
     @objc let tuesdayExperiment = DynamicFeature() { _ in
         let components = Calendar.current.dateComponents(Set([.weekday]), from: Date())
         return components.weekday == 3
@@ -158,7 +160,7 @@ As an exercise, let's see what it would look like to create an Override wrapper 
 @objc class FConfigFeature : DynamicFeature {
 
     init(key: String? = nil, requiresRestart: Bool = false, configDefault: Bool = false) {
-    
+
         // Delegate to FConfig, using the provided default parameter as FConfig default.
         super.init(key: key, requiresRestart: requiresRestart) { (feature: AnyFeature) -> Bool in
             return FConfig.sharedInstance.getBool(forKey: feature.key, withDefault: configDefault)
@@ -173,16 +175,16 @@ Now using `FConfigFeature` in our feature registry is just more of the same:
 @objc class Features : FeatureRegistry {
 
     @objc let blueText = Feature()
-    
+
     @obj let debugLogging = Feature(defaultState: false)
-    
+
     @objc let useTabBarNav = Feature(requiresRestart: true) 
-    
+
     @objc let tuesdayExperiment = DynamicFeature() { _ in
         let components = Calendar.current.dateComponents(Set([.weekday]), from: Date())
         return components.weekday == 3
     }
-    
+
     // FConfig backed feature
     @objc let redButtons = FConfigFeature()
 }
@@ -242,7 +244,7 @@ describe("sans serif font experiment") {
             // test or snapshot test for enabled state
         }
     }
-        
+
     it("respects the enabled flag") {
         withFeature(features.useSansSerifFont).disabled {
             // test or snapshot test for disabled state

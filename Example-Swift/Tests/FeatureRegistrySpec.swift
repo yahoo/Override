@@ -3,7 +3,7 @@
 
 import Quick
 import Nimble
-@testable import Override
+@testable import YMOverride
 
 class FeatureRegistrySpec: QuickSpec {
 

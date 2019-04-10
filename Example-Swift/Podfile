@@ -4,10 +4,10 @@ use_modular_headers!
 target 'Override_Example' do
   platform :ios, '11.0'
 
-  pod 'Override', :path => '../'
+  pod 'YMOverride', :path => '../'
 
   target 'Override_Tests' do
-    pod 'OverrideTestSupport', :path => '../'
+    pod 'YMOverrideTestSupport', :path => '../'
 
     pod 'Quick', '~>1.3'
     pod 'Nimble', '~>7.1'
@@ -19,5 +19,5 @@ end
 target 'Override_Example-TV' do
   platform :tvos, '11.0'
 
-  pod 'Override', :path => '../'
+  pod 'YMOverride', :path => '../'
 end

@@ -4,7 +4,7 @@
 #import "AppDelegate.h"
 #import "Example_ObjC-Swift.h"
 #import "FirstViewController.h"
-@import Override;
+@import YMOverride;
 
 @interface AppDelegate ()
 
