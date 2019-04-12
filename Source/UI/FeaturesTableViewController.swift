@@ -51,7 +51,7 @@ import UIKit
     /// controller provided by FeaturesViewController.
     ///
     /// - Parameter featureRegistry: The feature registry to use
-    public convenience init(featureRegistry: FeatureRegistry) {
+    convenience init(featureRegistry: FeatureRegistry) {
         self.init(features: featureRegistry.features)
     }
 }

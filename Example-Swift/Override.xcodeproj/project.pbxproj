@@ -62,7 +62,7 @@
 		AA6FDF387A56CD7003F13414 /* Pods_Override_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Override_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B65E77CA8BE4B8DBFC4566CE /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		B8948B7CBD053673DD68899B /* Pods-Override_Example-TV.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Override_Example-TV.release.xcconfig"; path = "Pods/Target Support Files/Pods-Override_Example-TV/Pods-Override_Example-TV.release.xcconfig"; sourceTree = "<group>"; };
-		C24CE5EB3B782F8A6F2DCEAA /* Override.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Override.podspec; path = ../Override.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		C24CE5EB3B782F8A6F2DCEAA /* YMOverride.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = YMOverride.podspec; path = ../YMOverride.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		CCBF3821509952445173837A /* Pods-Override_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Override_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Override_Example/Pods-Override_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		E6C2983A241F1F1B5AC79042 /* Pods-Override_Example-Override_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Override_Example-Override_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Override_Example-Override_Tests/Pods-Override_Example-Override_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		FC0A3133212E6E580064DD5E /* FeaturesViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturesViewControllerSpec.swift; sourceTree = "<group>"; };
@@ -79,7 +79,7 @@
 		FC5842D521BECA4D00DEF576 /* ReferenceImages */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ReferenceImages; sourceTree = "<group>"; };
 		FCAA3B6A2229E6D5009973B8 /* FeaturesTableViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturesTableViewControllerSpec.swift; sourceTree = "<group>"; };
 		FCAA3B6C2229EA89009973B8 /* FeaturesInteractorSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturesInteractorSpec.swift; sourceTree = "<group>"; };
-		FCC4F5A22107E654002AA384 /* OverrideTestSupport.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; name = OverrideTestSupport.podspec; path = ../OverrideTestSupport.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		FCC4F5A22107E654002AA384 /* YMOverrideTestSupport.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; name = YMOverrideTestSupport.podspec; path = ../YMOverrideTestSupport.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		FCF83C3520FFC84E00A6197F /* FeatureRegistrySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureRegistrySpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -184,8 +184,8 @@
 		607FACF51AFB993E008FA782 /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
-				C24CE5EB3B782F8A6F2DCEAA /* Override.podspec */,
-				FCC4F5A22107E654002AA384 /* OverrideTestSupport.podspec */,
+				C24CE5EB3B782F8A6F2DCEAA /* YMOverride.podspec */,
+				FCC4F5A22107E654002AA384 /* YMOverrideTestSupport.podspec */,
 				95E99DEE52ABFEA60967E01C /* README.md */,
 				B65E77CA8BE4B8DBFC4566CE /* LICENSE */,
 			);
@@ -322,6 +322,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
