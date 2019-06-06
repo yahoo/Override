@@ -29,3 +29,6 @@
 - [ ] I have read the **CONTRIBUTING** document.
 - [ ] I have added tests to cover my changes.
 - [ ] All new and existing tests passed.
+
+## License
+I confirm that this contribution is made under an MIT license and that I have the authority necessary to make this contribution on behalf of its copyright owner.
