@@ -24,7 +24,7 @@ class FeatureSwitchCell: FeatureTableViewCell {
 
             let labelColor = feature.enabled ? UIColor.mulah : UIColor.swedishFish
 
-            let labelString = NSMutableAttributedString(string: label.unCamelCased.capitalized)
+            let labelString = NSMutableAttributedString(string: label.unCamelCased)
             var attrs: [AttributedStringKey: Any] = [
                 AttributedStringKey.font: textLabel.font,
                 AttributedStringKey.foregroundColor: labelColor

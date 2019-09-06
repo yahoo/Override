@@ -5,8 +5,18 @@ import Foundation
 import UIKit
 
 extension String {
+
+    /// Concert camel cased strings "newURLFormatHere" into seperate words "New URL Format Here"
     var unCamelCased: String {
-        return replacingOccurrences(of: "([a-z])([A-Z])", with: "$1 $2", options: .regularExpression, range: nil)
+        // Split camel-cased string into words at each "hump"
+        // "newURLFormat" -> "new URLFormat"
+        let phase1 = replacingOccurrences(of: "([a-z])([A-Z])", with: "$1 $2", options: .regularExpression, range: nil)
+        // Split words that appear connected to abbreviations
+        // "new URLFormat" -> "new URL Format"
+        let phase2 = phase1.replacingOccurrences(of: "([A-Z]+)([A-Z][a-z])", with: "$1 $2", options: .regularExpression, range: nil)
+        // Capitalize the first letter
+        // "new URL Format" -> "New URL Format"
+        return phase2.prefix(1).uppercased() + phase2.dropFirst()
     }
 }
 
