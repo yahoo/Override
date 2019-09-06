@@ -21,7 +21,7 @@ class FeatureGroupCell: FeatureTableViewCell {
                 let textLabel = textLabel
                 else { return }
 
-            let labelString = NSMutableAttributedString(string: label.unCamelCased.capitalized)
+            let labelString = NSMutableAttributedString(string: label.unCamelCased)
             let attrs: [AttributedStringKey: Any] = [
                 AttributedStringKey.font: textLabel.font,
                 AttributedStringKey.foregroundColor: UIColor.darkGray

@@ -28,6 +28,24 @@ class FeatureSwitchCellSpec: QuickSpec {
                 }).to(throwAssertion())
             }
 
+            describe("Camel case string extension") {
+                it("ignores non-camel-case") {
+                    expect("lowercase".unCamelCased).to(equal("Lowercase"))
+                    expect("UPPERCASE".unCamelCased).to(equal("UPPERCASE"))
+                }
+
+                it("handles basic strings") {
+                    expect("aTest".unCamelCased).to(equal("A Test"))
+                    expect("aTestString".unCamelCased).to(equal("A Test String"))
+                }
+
+                it("handles abbreviations") {
+                    expect("newURLFormat".unCamelCased).to(equal("New URL Format"))
+                    expect("URLFormat".unCamelCased).to(equal("URL Format"))
+                    expect("formatURL".unCamelCased).to(equal("Format URL"))
+                }
+            }
+
             context("render") {
                 it("default") {
                     let feature = Feature(key: "Key")
