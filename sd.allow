@@ -1,7 +1,0 @@
-version: 1
-push:
-  # Grant Screwdriver project access (does not include pull requests)
-  - screwdriver:307314
-
-  # Grant pull requests from Screwdriver project
-  #- screwdriver:307314pr
