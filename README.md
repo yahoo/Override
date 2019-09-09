@@ -14,7 +14,7 @@
 
 ## Background
 
-Override is a super easy to use feature flag management system for iOS, tvOS, watchOS and macOS. Override helps minimize the boilerplate involved with adding and maintaining large sets of feature flags. Typically app developers employ feature flags to manage access to feature which are still in development, experimental, or behind an A/B test. Having a streamlined feature flag management process helps promote innovation by removing roadblocks to new experiments.
+Override is a super easy to use feature flag management system for iOS, tvOS, watchOS and macOS. Override helps minimize the boilerplate involved with adding and maintaining large sets of feature flags. It provides the ability to group features logically into nestable groups of functionality, and support for searching for specific flags. Typically app developers employ feature flags to manage access to feature which are still in development, experimental, or behind an A/B test. Having a streamlined feature flag management process helps promote innovation by removing roadblocks to new experiments.
 
 Feature flags typically have 3 states: on, off, or defaulted. The default state of a feature may be a preset mode or defined by a remote configuration or A/B testing system. Override supports these use cases, and more!
 
@@ -60,10 +60,31 @@ class ViewController : UIViewController {
         label.text = "Hello World!"
 
         // Update text color based on feature flag
-        label.textColor = myFeatures.blueText ? .blue : .green
+        label.textColor = myFeatures.blueText.enabled ? .blue : .green
     }
 }
 ```
+
+### Grouping Related Features
+
+For systems with a large number of feature flags, Override provides a means for logical grouping throug the `FeatureGroup` class. Feature group does not provide any additional runtime functionality; it simply provides a means for organizing feature flags. Groups are very easy to use:
+
+```swift
+import YMOverride
+
+@objc class ListFeatures : FeatureGroup {
+    @objc let infinteScroll = Feature()
+}
+
+@objc class Features : FeatureRegistry {
+
+    @objc let list = ListFeatures()
+
+    @objc let blueText = Feature()
+}
+```
+
+Now, reference the `infiniteScroll` feature flags in your code as `myFeatures.list.infiniteScroll.enabled`. The FeatureGroup class supports arbitrary depth nesting, so you can build multiple layers of FeatureGroups within FeatureGroups.
 
 ### Controlling Feature Flags
 
@@ -139,7 +160,7 @@ Sometimes, there is a need for a feature which defaults to on or off depending o
 
     @obj let debugLogging = Feature(defaultState: false)
 
-    @objc let useTabBarNav = Feature(requiresRestart: true) 
+    @objc let useTabBarNav = Feature(requiresRestart: true)
 
     @objc let tuesdayExperiment = DynamicFeature() { _ in
         let components = Calendar.current.dateComponents(Set([.weekday]), from: Date())
@@ -192,7 +213,7 @@ Now using `FConfigFeature` in our feature registry is just more of the same:
 
 ### Feature Management UI
 
-Override ships with a simple table view controller – `FeaturesViewController` – that provides a generic user interface for managing feature flags. The view controller shows a list of available features from a given `FeatureRegistry`. Each feature state is depicted visually, and swipe gestures are installed that allow for convienant feature control.
+Override ships with a simple table view controller – `FeaturesViewController` – that provides a generic user interface for managing feature flags. The view controller shows a list of available features from a given `FeatureRegistry`. It also allows you to find features using text search. Each feature state is depicted visually, and swipe gestures are installed that allow for convienant feature control.
 
 Feature state is conveyed visually:
 - Overridden *enabled* features are in green
