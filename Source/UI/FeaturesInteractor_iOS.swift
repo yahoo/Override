@@ -5,7 +5,16 @@ import Foundation
 import UIKit
 
 #if os(iOS)
-extension FeaturesInteractor {
+extension FeaturesInteractor { /* UITableViewDelegate */
+
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return presenter.features[indexPath.row] is LabeledGroupItem
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter.present(tableView, groupAtIndexPath: indexPath)
+    }
+
     @available(iOS 11, *)
     open func tableView(_ tableView: UITableView,
                         leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath

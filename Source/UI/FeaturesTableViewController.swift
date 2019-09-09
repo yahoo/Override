@@ -15,8 +15,10 @@ import UIKit
 
     let interactor: FeaturesInteractor
 
-    init(features: [LabeledItem]) {
-        presenter = FeaturesPresenter(withFeatures: features)
+    init<C: Collection>(features: C) where C.Element == LabeledItem {
+        let arrayFeatures = Array(features)
+
+        presenter = FeaturesPresenter(withFeatures: arrayFeatures)
         interactor = FeaturesInteractor(withPresenter: presenter)
 
         super.init(style: UITableView.Style.plain)
@@ -34,12 +36,26 @@ import UIKit
         tableView.register(FeatureSwitchCell.self, forCellReuseIdentifier: FeatureCellIdentifier.switchCell.rawValue)
         tableView.register(FeatureGroupCell.self, forCellReuseIdentifier: FeatureCellIdentifier.groupCell.rawValue)
 
-        #if os(iOS)
-        tableView.estimatedRowHeight = 60
-        #endif
-
         tableView.dataSource = presenter
         tableView.delegate = interactor
+
+        #if os(iOS)
+        tableView.estimatedRowHeight = 60
+
+        // Setup the search/filter interface
+        let searchController = UISearchController(searchResultsController: FeaturesTableViewController(features: presenter.features))
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchResultsUpdater = interactor
+        definesPresentationContext = true
+
+        if #available(iOS 11.0, *) {
+            navigationItem.searchController = searchController
+            navigationItem.hidesSearchBarWhenScrolling = false
+        } else {
+            tableView.tableHeaderView = searchController.searchBar
+        }
+        #endif
     }
 }
 
