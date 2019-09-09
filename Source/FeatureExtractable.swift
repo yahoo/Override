@@ -3,18 +3,13 @@
 
 import Foundation
 
-protocol FeatureExtractable {
+protocol FeatureProvider {
     var featureItems: [LabeledItem] { get }
 }
 
 /// A protocol for Feature containers that declares the ability
 /// to return the list of Features via Swift Mirroring
-protocol FeatureExtractableByMirror: FeatureExtractable {
-    /// Extract all features from this instance, and it's superclass(es)
-    ///
-    /// - Returns: A list of feature (key,value) tuples
-    func extractFeatures() -> [LabeledItem]
-
+protocol FeatureExtractableByMirror {
     /// Extract the features from a Mirror, and return them as a Feature list
     ///
     /// - Parameter mirror: The mirror to examine
@@ -23,11 +18,14 @@ protocol FeatureExtractableByMirror: FeatureExtractable {
 }
 
 /// Concrete extension for generic features-by-mirror extraction code
-extension FeatureExtractableByMirror {
+extension FeatureProvider where Self: FeatureExtractableByMirror {
+
+    var featureItems: [LabeledItem] { return extractFeatures() }
+
     /// Extract all features from this instance, and it's superclass(es)
     ///
     /// - Returns: A list of feature (key,value) tuples
-    func extractFeatures() -> [LabeledItem] {
+    private func extractFeatures() -> [LabeledItem] {
         var features = [LabeledItem]()
 
         var mirror: Mirror? = Mirror(reflecting: self)
@@ -40,9 +38,25 @@ extension FeatureExtractableByMirror {
 
         return features
     }
-}
 
-/// Glue FeatureExtractableByMirror protocol to the FeatureExtractable protocol
-extension FeatureExtractableByMirror where Self: FeatureExtractable {
-    var featureItems: [LabeledItem] { return extractFeatures() }
+    func extractFeatures(fromMirror mirror: Mirror) -> [LabeledItem] {
+        return mirror.children.reduce(into: [LabeledItem]()) { (allFeatures, child) in
+            guard case let (labelOpt, rawValue) = child,
+                let label = labelOpt
+                else { return }
+
+            switch rawValue {
+            case let feature as AnyFeature:
+                //print("Loading feature \(label): \(feature)")
+                allFeatures.append(LabeledFeatureItem(label: label, feature: feature))
+            case let featureGroup as FeatureGroup:
+                //print("Loading feature group: \(label)")
+                let groupFeatures = featureGroup.extractFeatures()
+                allFeatures.append(LabeledGroupItem(label: label, features: groupFeatures))
+            default:
+                //print("Skipping property: \(label)")
+                return
+            }
+        }
+    }
 }

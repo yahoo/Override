@@ -6,11 +6,6 @@ import Quick
 import Nimble
 @testable import YMOverride
 
-fileprivate struct TestLabeledFeatureItem: LabeledFeatureItem {
-    let label: String
-    let feature: AnyFeature
-}
-
 fileprivate class TestFeatureGroup: FeatureGroup {
     let groupFeature1 = Feature()
     let groupFeature2 = Feature()
@@ -142,20 +137,20 @@ class FeatureInteractorIosSpec: QuickSpec {
                 let indexPath = IndexPath(item: 2, section: 0)
 
                 let leadingActions = interactor.tableView(UITableView(frame: .zero), leadingSwipeActionsConfigurationForRowAt: indexPath)
-                expect(leadingActions).to(beNil())
+                expect(leadingActions?.actions).to(beEmpty())
 
                 let trailingActions = interactor.tableView(UITableView(frame: .zero), trailingSwipeActionsConfigurationForRowAt: indexPath)
-                expect(trailingActions).to(beNil())
+                expect(trailingActions?.actions).to(beEmpty())
             }
 
             it("does not exceed bounds") {
                 let indexPath = IndexPath(item: 9999, section: 0)
 
                 let leadingActions = interactor.tableView(UITableView(frame: .zero), leadingSwipeActionsConfigurationForRowAt: indexPath)
-                expect(leadingActions).to(beNil())
+                expect(leadingActions?.actions).to(beEmpty())
 
                 let trailingActions = interactor.tableView(UITableView(frame: .zero), trailingSwipeActionsConfigurationForRowAt: indexPath)
-                expect(trailingActions).to(beNil())
+                expect(trailingActions?.actions).to(beEmpty())
             }
 
             context("configures leading swipe") {

@@ -3,21 +3,20 @@
 
 import Foundation
 
-internal protocol LabeledItem {
+protocol LabeledItem {
     var label: String { get }
 }
 
-internal protocol LabeledFeatureItem: LabeledItem {
-    var label: String { get }
+protocol LabeledFeatureItemLike: LabeledItem {
     var feature: AnyFeature { get }
 }
 
-fileprivate struct LabeledFeature: LabeledFeatureItem {
+struct LabeledFeatureItem: LabeledFeatureItemLike {
     let label: String
     let feature: AnyFeature
 }
 
-internal struct LabeledGroupItem: LabeledItem, Collection {
+struct LabeledGroupItem: LabeledItem, Collection {
     typealias Element = LabeledItem
     typealias Index = Int
     typealias Iterator = IndexingIterator<LabeledGroupItem>
@@ -25,13 +24,16 @@ internal struct LabeledGroupItem: LabeledItem, Collection {
     typealias SubSequence = Slice<LabeledGroupItem>
 
     let label: String
+
     private let features: [LabeledItem]
 
     init(label: String, features: [LabeledItem]) {
         self.label = label
         self.features = features
     }
+}
 
+extension LabeledGroupItem { /* Collection Support */
     var startIndex: Int { return features.startIndex }
 
     var endIndex: Int { return features.endIndex }
@@ -49,7 +51,7 @@ internal struct LabeledGroupItem: LabeledItem, Collection {
 /// of Override. The registry serves as a container for a collection of Features,
 /// and performs internal wiring to ensure that features reflect correct values
 /// based on the underlying data FeatureStore.
-@objc open class FeatureRegistry: NSObject {
+@objc open class FeatureRegistry: NSObject, FeatureProvider, FeatureExtractableByMirror {
 
     @objc public let featureStore: FeatureStore
 
@@ -129,29 +131,6 @@ internal struct LabeledGroupItem: LabeledItem, Collection {
     }
 }
 
-extension FeatureRegistry: FeatureExtractable, FeatureExtractableByMirror {
-    func extractFeatures(fromMirror mirror: Mirror) -> [LabeledItem] {
-        return mirror.children.reduce(into: [LabeledItem]()) { (allFeatures, child) in
-            guard case let (labelOpt, rawValue) = child,
-                let label = labelOpt
-                else { return }
-
-            switch rawValue {
-            case let feature as AnyFeature:
-                //print("Loading feature \(label): \(feature)")
-                allFeatures.append(LabeledFeature(label: label, feature: feature))
-            case let featureGroup as FeatureGroup:
-                //print("Loading feature group: \(label)")
-                let groupFeatures = featureGroup.extractFeatures()
-                allFeatures.append(LabeledGroupItem(label: label, features: groupFeatures))
-            default:
-                //print("Skipping property: \(label)")
-                return
-            }
-        }
-    }
-}
-
 /// A container used to group multiple features into a logical set.
 ///
 /// Feature aid in grouping related features for display and
@@ -179,23 +158,8 @@ extension FeatureRegistry: FeatureExtractable, FeatureExtractableByMirror {
 /// if myFeatures.themeFeatures.darkMode.enabled { ... }
 ///
 /// FeatureGroup instances may not be nested at this time.
-@objc open class FeatureGroup: NSObject {
+@objc open class FeatureGroup: NSObject, FeatureProvider, FeatureExtractableByMirror {
     // Potentially add helper properties here in the future.
     // This is a class (vs protocol) because we need to declare
     // internal conformance to FeatureExtractable for Obj-C compat.
-}
-
-extension FeatureGroup: FeatureExtractable, FeatureExtractableByMirror {
-    func extractFeatures(fromMirror mirror: Mirror) -> [LabeledItem] {
-        return mirror.children.compactMap { child in
-            // Ignore nested groups (for now) as it simplifies everything.
-            guard case let (labelOpt, rawValue) = child,
-                let label = labelOpt,
-                let feature = rawValue as? AnyFeature
-                else { return nil }
-
-            //print("Loading feature \(label): \(feature)")
-            return LabeledFeature(label: label, feature: feature)
-        }
-    }
 }

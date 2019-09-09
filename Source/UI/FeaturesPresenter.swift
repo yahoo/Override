@@ -23,7 +23,7 @@ class FeaturesPresenter: NSObject, UITableViewDataSource {
     }
 
     private let allFeatures: [LabeledItem]
-    private var filteredFeatures: [LabeledItem]?
+    private var filteredFeatures: [LabeledSearchResultItem]?
 
     init(withFeatures features: [LabeledItem]) {
         self.allFeatures = features
@@ -59,23 +59,67 @@ extension FeaturesPresenter { /* UITableViewDataSource */
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let labeledItem = features[indexPath.row]
 
-        let cellID: FeaturesTableViewController.FeatureCellIdentifier = labeledItem is LabeledGroupItem ? .groupCell : .switchCell
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellID.rawValue, for: indexPath)
+        switch labeledItem {
+        case let item as LabeledGroupItem:
+            let cellID = FeaturesTableViewController.FeatureCellIdentifier.groupCell.rawValue
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
+            if let cell = cell as? FeatureGroupCell {
+                cell.labeledGroup = item
+            }
+            return cell
 
-        switch (labeledItem, cell) {
-        case (let labeledGroup as LabeledGroupItem, let cell as FeatureGroupCell):
-            cell.labeledGroup = labeledGroup
-        case (let labeledFeature as LabeledFeatureItem, let cell as FeatureSwitchCell):
-            cell.labeledFeature = labeledFeature
+        case let item as LabeledSearchResultItem:
+            let cellID = FeaturesTableViewController.FeatureCellIdentifier.switchCell.rawValue
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
+            if let cell = cell as? FeatureSwitchCell {
+                cell.labeledFeature = item.result
+                cell.featurePath = item.groupStack
+            }
+            return cell
+
         default:
-            break
-        }
+            let cellID = FeaturesTableViewController.FeatureCellIdentifier.switchCell.rawValue
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
 
-        return cell
+            if let cell = cell as? FeatureSwitchCell {
+                cell.labeledFeature = labeledItem as? LabeledFeatureItem
+            }
+            return cell
+        }
     }
 }
 
 extension FeaturesPresenter { /* UITableViewController Support Methods */
+
+    private struct LabeledSearchResultItem: LabeledFeatureItemLike {
+        var label: String { return result.label }
+
+        var feature: AnyFeature { return result.feature }
+
+        let groupStack: [LabeledGroupItem]
+
+        let result: LabeledFeatureItem
+    }
+
+    private func depthFirstFilter<T: Collection>(features: T, searchPath: [LabeledGroupItem], query: String) -> [LabeledSearchResultItem] where T.Element == LabeledItem {
+        return features.flatMap { labeledItem -> [LabeledSearchResultItem] in
+            switch labeledItem {
+            case let featureGroup as LabeledGroupItem:
+                // Traverse into the group, but to not match on the group item itself
+                var nextSearchPath = searchPath
+                nextSearchPath.append(featureGroup)
+                return depthFirstFilter(features: featureGroup, searchPath: nextSearchPath, query: query)
+
+            case let feature as LabeledFeatureItem where feature.label.lowercased().contains(query):
+                // For single items, return if they are a match
+                return [LabeledSearchResultItem(groupStack: searchPath, result: feature)]
+
+            default:
+                // For any custom subclass which we don't know about, bail.
+                return [LabeledSearchResultItem]()
+            }
+        }
+    }
 
     func filter(_ tableView: UITableView, query: String?) {
         guard let query = query?.lowercased() else {
@@ -83,16 +127,7 @@ extension FeaturesPresenter { /* UITableViewController Support Methods */
             return
         }
 
-        filteredFeatures = allFeatures.filter { labeledItem in
-            switch labeledItem {
-            // Exclude feature groups from search results. Having push-navigation in a Search modal is
-            // very complicated for both UX and code.
-            case is LabeledGroupItem:
-                return false
-            default:
-                return labeledItem.label.lowercased().contains(query)
-            }
-        }
+        filteredFeatures = depthFirstFilter(features: allFeatures, searchPath: [LabeledGroupItem](), query: query)
 
         tableView.reloadData()
     }
