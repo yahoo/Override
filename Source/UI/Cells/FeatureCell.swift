@@ -34,11 +34,15 @@ class FeatureTableViewCell: UITableViewCell {
     override init(style: TableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        let font = UIFont.systemFont(ofSize: 30, weight: .medium)
+        let nameFont = UIFont.systemFont(ofSize: 30, weight: .medium)
+        let pathFont = UIFont.monospacedDigitSystemFont(ofSize: 13, weight: .regular)
+
         if #available(iOS 11, tvOS 11, *) {
-            textLabel?.font = UIFontMetrics(forTextStyle: FontTextStyle.body).scaledFont(for: font)
+            textLabel?.font = UIFontMetrics(forTextStyle: FontTextStyle.body).scaledFont(for: nameFont)
+            detailTextLabel?.font = UIFontMetrics(forTextStyle: FontTextStyle.body).scaledFont(for: pathFont)
         } else {
-            textLabel?.font = font
+            textLabel?.font = nameFont
+            detailTextLabel?.font = pathFont
         }
         textLabel?.numberOfLines = 0
     }

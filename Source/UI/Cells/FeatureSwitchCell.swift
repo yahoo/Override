@@ -42,4 +42,40 @@ class FeatureSwitchCell: FeatureTableViewCell {
             self.setNeedsLayout()
         }
     }
+
+    var featurePath: [LabeledGroupItem]? {
+        didSet {
+            guard let featurePath = featurePath,
+                let detailLabel = self.detailTextLabel
+                else { return }
+
+            let mergedString = featurePath.map { $0.label.unCamelCased }.joined(separator: " → ")
+
+            let labelString = NSMutableAttributedString(string: mergedString)
+            let attrs: [AttributedStringKey: Any] = [
+                AttributedStringKey.font: detailLabel.font,
+                AttributedStringKey.foregroundColor: UIColor.lightGray
+            ]
+
+            labelString.addAttributes(attrs, range: NSRange(location: 0, length: labelString.length))
+
+            detailLabel.attributedText = labelString
+
+            self.setNeedsLayout()
+        }
+    }
+
+    override func prepareForReuse() {
+        self.detailTextLabel?.attributedText = nil
+        self.textLabel?.attributedText = nil
+        super.prepareForReuse()
+    }
+
+    override init(style: TableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

@@ -4,9 +4,23 @@
 import Foundation
 import YMOverride
 
+@objc public class ThemeImageFeatures: FeatureGroup {
+    let prefetchImages = Feature()
+    let cacheImages = Feature()
+    let resizeImages = Feature()
+}
+
+@objc public class ThemeFeatureModes: FeatureGroup {
+    let applyToIcons = Feature()
+    let applyToTitles = Feature()
+    let applyToCaptions = Feature()
+    let imageModes = ThemeImageFeatures()
+}
+
 @objc public class ThemeFeatures: FeatureGroup {
     let darkMode = Feature()
     let customFont = Feature(requiresRestart: true)
+    let advanced = ThemeFeatureModes()
 }
 
 @objc public class MyFeatures: FeatureRegistry { // @objc needed to use @IBOutlet

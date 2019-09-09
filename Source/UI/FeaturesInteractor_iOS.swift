@@ -22,7 +22,7 @@ extension FeaturesInteractor { /* UITableViewDelegate */
 
         guard indexPath.row <= presenter.features.count,
             let labeledFeature = presenter.features[indexPath.row] as? LabeledFeatureItem
-            else { return nil }
+            else { return UISwipeActionsConfiguration.init(actions: []) }
 
         let action = UIContextualAction(style: .normal,
                                         title: "Default") { [weak self] (_, _, callback: (Bool) -> Void) in
@@ -44,7 +44,7 @@ extension FeaturesInteractor { /* UITableViewDelegate */
 
         guard indexPath.row <= presenter.features.count,
             let labeledFeature = presenter.features[indexPath.row] as? LabeledFeatureItem
-            else { return nil }
+            else { return UISwipeActionsConfiguration.init(actions: []) }
 
         let enableAction = UIContextualAction(style: .normal,
                                               title: "On") { [weak self] (_, _, callback: (Bool) -> Void) in
