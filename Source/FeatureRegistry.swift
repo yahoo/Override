@@ -12,9 +12,37 @@ internal protocol LabeledFeatureItem: LabeledItem {
     var feature: AnyFeature { get }
 }
 
-internal protocol LabeledGroupItem: LabeledItem {
-    var label: String { get }
-    var features: [LabeledItem] { get }
+fileprivate struct LabeledFeature: LabeledFeatureItem {
+    let label: String
+    let feature: AnyFeature
+}
+
+internal struct LabeledGroupItem: LabeledItem, Collection {
+    typealias Element = LabeledItem
+    typealias Index = Int
+    typealias Iterator = IndexingIterator<LabeledGroupItem>
+    typealias Indices = DefaultIndices<LabeledGroupItem>
+    typealias SubSequence = Slice<LabeledGroupItem>
+
+    let label: String
+    private let features: [LabeledItem]
+
+    init(label: String, features: [LabeledItem]) {
+        self.label = label
+        self.features = features
+    }
+
+    var startIndex: Int { return features.startIndex }
+
+    var endIndex: Int { return features.endIndex }
+
+    subscript(position: Int) -> LabeledItem {
+        return features[position]
+    }
+
+    func index(after i: Int) -> Int {
+        return features.index(after: i)
+    }
 }
 
 /// FeatureRegistry is intended to be subclassed at least once by each integration
@@ -22,16 +50,6 @@ internal protocol LabeledGroupItem: LabeledItem {
 /// and performs internal wiring to ensure that features reflect correct values
 /// based on the underlying data FeatureStore.
 @objc open class FeatureRegistry: NSObject {
-
-    fileprivate struct LabeledFeature: LabeledFeatureItem {
-        let label: String
-        let feature: AnyFeature
-    }
-
-    fileprivate struct LabeledFeatureGroup: LabeledGroupItem {
-        let label: String
-        let features: [LabeledItem]
-    }
 
     @objc public let featureStore: FeatureStore
 
@@ -104,7 +122,7 @@ internal protocol LabeledGroupItem: LabeledItem {
     }
 
     private func configure(groupItem: LabeledGroupItem) {
-        groupItem.features.forEach { item in
+        groupItem.forEach { item in
             guard let featureItem = item as? LabeledFeatureItem else { return }
             configure(featureItem: featureItem)
         }
@@ -125,7 +143,7 @@ extension FeatureRegistry: FeatureExtractable, FeatureExtractableByMirror {
             case let featureGroup as FeatureGroup:
                 //print("Loading feature group: \(label)")
                 let groupFeatures = featureGroup.extractFeatures()
-                allFeatures.append(LabeledFeatureGroup(label: label, features: groupFeatures))
+                allFeatures.append(LabeledGroupItem(label: label, features: groupFeatures))
             default:
                 //print("Skipping property: \(label)")
                 return
@@ -177,7 +195,7 @@ extension FeatureGroup: FeatureExtractable, FeatureExtractableByMirror {
                 else { return nil }
 
             //print("Loading feature \(label): \(feature)")
-            return FeatureRegistry.LabeledFeature(label: label, feature: feature)
+            return LabeledFeature(label: label, feature: feature)
         }
     }
 }

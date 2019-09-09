@@ -5,7 +5,7 @@ import Foundation
 import UIKit
 
 #if os(tvOS)
-extension FeaturesInteractor {
+extension FeaturesInteractor { /* UITableViewDelegate */
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter.showSelector(tableView, indexPath: indexPath) { [weak self] (feature, overrideState) in

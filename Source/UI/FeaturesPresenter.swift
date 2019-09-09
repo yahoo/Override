@@ -4,7 +4,7 @@
 import Foundation
 import UIKit
 
-class FeaturesPresenter: NSObject {
+class FeaturesPresenter: NSObject, UITableViewDataSource {
 
     enum RestartPromptResolution: Int {
         // Flag indicating that the restart prompt was accepted. The overridden
@@ -18,41 +18,15 @@ class FeaturesPresenter: NSObject {
 
     weak var output: UIViewController?
 
-    let features: [LabeledItem]
+    var features: [LabeledItem] {
+        return filteredFeatures ?? allFeatures
+    }
+
+    private let allFeatures: [LabeledItem]
+    private var filteredFeatures: [LabeledItem]?
 
     init(withFeatures features: [LabeledItem]) {
-        self.features = features
-    }
-
-    func updateFeature(tableView: UITableView, indexPath: IndexPath) {
-        tableView.reloadRows(at: [indexPath], with: .automatic)
-    }
-
-    func showSelector(_ tableView: UITableView, indexPath: IndexPath,
-                      handler: @escaping (_: AnyFeature, _: OverrideState) -> Void) {
-        // Ensure the index path is for a feature, not a feature container
-        guard indexPath.row <= features.count,
-            let labeledFeature = features[indexPath.row] as? LabeledFeatureItem
-            else { return }
-
-        let alert = UIAlertController(title: labeledFeature.label, message: "Choose a state", preferredStyle: .alert)
-
-        let feature = labeledFeature.feature
-        OverrideState.allCases.forEach { state in
-            let title: String
-            if state == .featureDefault {
-                title = "\(state.description.capitalized) (\(feature.defaultState.description.capitalized))"
-            } else {
-                title = state.description.capitalized
-            }
-
-            alert.addAction(UIAlertAction(title: title, style: .default) { [weak self] _ in
-                handler(feature, state)
-                self?.updateFeature(tableView: tableView, indexPath: indexPath)
-            })
-        }
-
-        output?.present(alert, animated: true, completion: nil)
+        self.allFeatures = features
     }
 
     /// If the feature require restart (see `featuresRequiringRestart`), presents
@@ -74,23 +48,10 @@ class FeaturesPresenter: NSObject {
         alert.addAction(UIAlertAction(title: "Continue", style: .default) { _ in completion(.acceptAndContinue) })
         output.present(alert, animated: true, completion: nil)
     }
-
-    func present(_ tableView: UITableView, groupAtIndexPath indexPath: IndexPath) {
-        guard let labeledGroup = features[indexPath.row] as? LabeledGroupItem else { return }
-        let groupTableViewController = FeaturesTableViewController(features: labeledGroup.features)
-
-        if let navController = output?.navigationController {
-            navController.pushViewController(groupTableViewController, animated: true)
-            tableView.deselectRow(at: indexPath, animated: false)
-        } else {
-            output?.present(groupTableViewController, animated: false) {
-                tableView.deselectRow(at: indexPath, animated: false)
-            }
-        }
-    }
 }
 
-extension FeaturesPresenter: UITableViewDataSource {
+extension FeaturesPresenter { /* UITableViewDataSource */
+
     open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return features.count
     }
@@ -111,5 +72,74 @@ extension FeaturesPresenter: UITableViewDataSource {
         }
 
         return cell
+    }
+}
+
+extension FeaturesPresenter { /* UITableViewController Support Methods */
+
+    func filter(_ tableView: UITableView, query: String?) {
+        guard let query = query?.lowercased() else {
+            filteredFeatures = nil
+            return
+        }
+
+        filteredFeatures = allFeatures.filter { labeledItem in
+            switch labeledItem {
+            // Exclude feature groups from search results. Having push-navigation in a Search modal is
+            // very complicated for both UX and code.
+            case is LabeledGroupItem:
+                return false
+            default:
+                return labeledItem.label.lowercased().contains(query)
+            }
+        }
+
+        tableView.reloadData()
+    }
+
+    func updateFeature(tableView: UITableView, indexPath: IndexPath) {
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
+
+    func showSelector(_ tableView: UITableView, indexPath: IndexPath,
+                      handler: @escaping (_: AnyFeature, _: OverrideState) -> Void) {
+        // Ensure the index path is for a feature, not a feature container
+        guard let output = output,
+            indexPath.row <= features.count,
+            let labeledFeature = features[indexPath.row] as? LabeledFeatureItem
+            else { return }
+
+        let alert = UIAlertController(title: labeledFeature.label, message: "Choose a state", preferredStyle: .alert)
+
+        let feature = labeledFeature.feature
+        OverrideState.allCases.forEach { state in
+            let title: String
+            if state == .featureDefault {
+                title = "\(state.description.capitalized) (\(feature.defaultState.description.capitalized))"
+            } else {
+                title = state.description.capitalized
+            }
+
+            alert.addAction(UIAlertAction(title: title, style: .default) { [weak self] _ in
+                handler(feature, state)
+                self?.updateFeature(tableView: tableView, indexPath: indexPath)
+            })
+        }
+
+        output.present(alert, animated: true, completion: nil)
+    }
+
+    func present(_ tableView: UITableView, groupAtIndexPath indexPath: IndexPath) {
+        guard let labeledGroup = features[indexPath.row] as? LabeledGroupItem else { return }
+        let groupTableViewController = FeaturesTableViewController(features: labeledGroup)
+
+        if let navController = output?.navigationController {
+            navController.pushViewController(groupTableViewController, animated: true)
+            tableView.deselectRow(at: indexPath, animated: false)
+        } else if let output = output {
+            output.present(groupTableViewController, animated: false) {
+                tableView.deselectRow(at: indexPath, animated: false)
+            }
+        }
     }
 }

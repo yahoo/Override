@@ -22,11 +22,19 @@ fileprivate class TestRegistry: FeatureRegistry {
     let group = TestFeatureGroup()
 }
 
-fileprivate class TestPresenter: FeaturesPresenter {
+/// Table view which captures certain values for test validation
+fileprivate class TestTableView : UITableView {
     private(set) var presentedIndexPath: IndexPath? = nil
 
-    override func present(_ tableView: UITableView, groupAtIndexPath indexPath: IndexPath) {
+    override func deselectRow(at indexPath: IndexPath, animated: Bool) {
         presentedIndexPath = indexPath
+    }
+}
+
+/// View controller that synchonrizes certain UIKit functionality for easier testing
+fileprivate class SyncPresentingViewController: UIViewController {
+    override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
+        completion?()
     }
 }
 
@@ -61,26 +69,60 @@ class FeatureInteractorSpec: QuickSpec {
 
                 //func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
                 context("didSelectRowAt") {
-                    var presenter: TestPresenter!
+                    var presenter: FeaturesPresenter!
                     var interactor: FeaturesInteractor!
+                    var testTableView: TestTableView!
+                    var output: UIViewController!
 
                     beforeEach {
-                        presenter = TestPresenter(withFeatures:  registry.featureItems)
+                        presenter = FeaturesPresenter(withFeatures:  registry.featureItems)
                         interactor = FeaturesInteractor(withPresenter: presenter)
+                        testTableView = TestTableView(frame: .zero, style: .plain)
                     }
 
-                    it("notifies for groups") {
-                        expect(presenter.presentedIndexPath).to(beNil())
-                        let indexPath = IndexPath(item: 2, section: 0)
-                        interactor.tableView(UITableView(frame: .zero), didSelectRowAt: indexPath)
-                        expect(presenter.presentedIndexPath).to(equal(indexPath))
+                    context("with navigation controller") {
+                        let navController = UINavigationController(nibName: nil, bundle: nil)
+
+                        beforeEach {
+                            output = SyncPresentingViewController(nibName: nil, bundle: nil)
+                            navController.viewControllers = [ output ]
+                            presenter.output = output
+                        }
+
+                        it("notifies for group features") {
+                            expect(testTableView.presentedIndexPath).to(beNil())
+                            let indexPath = IndexPath(item: 2, section: 0)
+                            interactor.tableView(testTableView, didSelectRowAt: indexPath)
+                            expect(testTableView.presentedIndexPath).to(equal(indexPath))
+                        }
+
+                        it("does not notify for non-groups features") {
+                            expect(testTableView.presentedIndexPath).to(beNil())
+                            let indexPath = IndexPath(item: 0, section: 0)
+                            interactor.tableView(testTableView, didSelectRowAt: indexPath)
+                            expect(testTableView.presentedIndexPath).to(beNil())
+                        }
                     }
 
-                    it("notifies for cells") {
-                        expect(presenter.presentedIndexPath).to(beNil())
-                        let indexPath = IndexPath(item: 0, section: 0)
-                        interactor.tableView(UITableView(frame: .zero), didSelectRowAt: indexPath)
-                        expect(presenter.presentedIndexPath).to(equal(indexPath))
+                    context("without navigation controller") {
+                        beforeEach {
+                            output = SyncPresentingViewController(nibName: nil, bundle: nil)
+                            presenter.output = output
+                        }
+
+                        it("notifies for group features") {
+                            expect(testTableView.presentedIndexPath).to(beNil())
+                            let indexPath = IndexPath(item: 2, section: 0)
+                            interactor.tableView(testTableView, didSelectRowAt: indexPath)
+                            expect(testTableView.presentedIndexPath).to(equal(indexPath))
+                        }
+
+                        it("does not notify for non-groups features") {
+                            expect(testTableView.presentedIndexPath).to(beNil())
+                            let indexPath = IndexPath(item: 0, section: 0)
+                            interactor.tableView(testTableView, didSelectRowAt: indexPath)
+                            expect(testTableView.presentedIndexPath).to(beNil())
+                        }
                     }
                 }
             }
