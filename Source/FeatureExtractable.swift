@@ -25,11 +25,6 @@ extension FeatureProvider where Self: FeatureExtractableByMirror {
     /// Extract all features from this instance, and it's superclass(es)
     ///
     /// - Returns: A list of feature (key,value) tuples
-    //func extractFeatures() -> [LabeledItem]
-
-    /// Extract all features from this instance, and it's superclass(es)
-    ///
-    /// - Returns: A list of feature (key,value) tuples
     private func extractFeatures() -> [LabeledItem] {
         var features = [LabeledItem]()
 

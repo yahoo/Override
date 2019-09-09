@@ -67,7 +67,7 @@ class ViewController : UIViewController {
 
 ### Grouping Related Features
 
-For systems with a large number of feature flags, Override provides a means for logical grouping throug the `FeatureGroup` class. Feature group does not provide any additional runtime functionality; it simply provides a means for organizing feature flags. Groups are very easy to use:
+For systems with a large number of feature flags, Override provides a means for logical grouping throug the `FeatureGroup` class. No additional runtime functionality is provided by `FeatureGroup`; it is primarily a means for organizing feature flags. Grouping features is very easy:
 
 ```swift
 import YMOverride
@@ -84,7 +84,7 @@ import YMOverride
 }
 ```
 
-Now, reference the `infiniteScroll` feature flags in your code as `myFeatures.list.infiniteScroll.enabled`. The FeatureGroup class supports arbitrary depth nesting, so you can build multiple layers of FeatureGroups within FeatureGroups.
+Now, reference the `infiniteScroll` feature flags in your code as `myFeatures.list.infiniteScroll.enabled`. The `FeatureGroup` class supports arbitrary depth nesting, so you can build multiple layers of `FeatureGroup` within `FeatureGroup`.
 
 ### Controlling Feature Flags
 
