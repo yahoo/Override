@@ -127,10 +127,17 @@ class FeatureInteractorSpec: QuickSpec {
 
 #if os(iOS)
 class FeatureInteractorIosSpec: QuickSpec {
+    struct CustomFeature: LabeledFeatureItemLike {
+        let label: String = "Test"
+        let feature: AnyFeature = Feature()
+    }
+
     override func spec() {
         describe("Feature Registry (iOS)") {
             let registry = TestRegistry(withFeatureStore: nil)
-            let presenter = FeaturesPresenter(withFeatures: registry.featureItems)
+            var features = registry.featureItems
+            features.append(CustomFeature())
+            let presenter = FeaturesPresenter(withFeatures: features)
             let interactor = FeaturesInteractor(withPresenter: presenter)
 
             it("does not configure swipe for groups") {
@@ -176,6 +183,18 @@ class FeatureInteractorIosSpec: QuickSpec {
                     expect(disabledActions!.actions[0].style).to(equal(.normal))
                     expect(disabledActions!.actions[0].title).to(equal("Default"))
                     expect(disabledActions!.actions[0].backgroundColor).to(equal(UIColor.swedishFish))
+                }
+
+                it("for custom feature type") { // using LabeledFeatureLike protocol
+                    let indexPath = IndexPath(item: 3, section: 0)
+
+                    let disabledActions = interactor.tableView(UITableView(frame: .zero), leadingSwipeActionsConfigurationForRowAt: indexPath)
+                    expect(disabledActions).toNot(beNil())
+                    expect(disabledActions!.actions).to(haveCount(1))
+                    expect(disabledActions!.actions.first?.handler).toNot(beNil())
+                    expect(disabledActions!.actions.first?.style).to(equal(.normal))
+                    expect(disabledActions!.actions.first?.title).to(equal("Default"))
+                    expect(disabledActions!.actions.first?.backgroundColor).to(equal(UIColor.swedishFish))
                 }
             }
 
