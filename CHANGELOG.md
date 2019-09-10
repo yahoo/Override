@@ -1,10 +1,16 @@
 # Release Notes
 
+## 2.1.1
+  - Bug Fixes
+    - Search results do not have swipe actions
+
 ## 2.1.0
- - Add support for nested FeatureGroup
- - Fix bug that cuased non-functional "Delete" swipe action to appear on FeatureGroup
- - Search support
- - Internal refactor/simplifications
+  - Bug Fixes
+    - Fix bug that cuased non-functional "Delete" swipe action to appear on FeatureGroup
+  - New Features
+    - Add support for nested FeatureGroup
+    - Search support
+    - Internal refactor/simplifications
 
 ## 2.0.0
  - Add support for FeatureGroup - groups of features
