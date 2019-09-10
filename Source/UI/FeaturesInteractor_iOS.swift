@@ -21,7 +21,7 @@ extension FeaturesInteractor { /* UITableViewDelegate */
         ) -> UISwipeActionsConfiguration? {
 
         guard indexPath.row <= presenter.features.count,
-            let labeledFeature = presenter.features[indexPath.row] as? LabeledFeatureItem
+            let labeledFeature = presenter.features[indexPath.row] as? LabeledFeatureItemLike
             else { return UISwipeActionsConfiguration.init(actions: []) }
 
         let action = UIContextualAction(style: .normal,
@@ -43,7 +43,7 @@ extension FeaturesInteractor { /* UITableViewDelegate */
         ) -> UISwipeActionsConfiguration? {
 
         guard indexPath.row <= presenter.features.count,
-            let labeledFeature = presenter.features[indexPath.row] as? LabeledFeatureItem
+            let labeledFeature = presenter.features[indexPath.row] as? LabeledFeatureItemLike
             else { return UISwipeActionsConfiguration.init(actions: []) }
 
         let enableAction = UIContextualAction(style: .normal,
