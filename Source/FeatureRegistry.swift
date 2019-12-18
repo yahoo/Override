@@ -163,3 +163,26 @@ extension LabeledGroupItem { /* Collection Support */
     // This is a class (vs protocol) because we need to declare
     // internal conformance to FeatureExtractable for Obj-C compat.
 }
+
+extension FeatureRegistry {
+
+
+    /// Returns the label values for the enabled features in the provided registry.
+    /// Primarily used for debugging.
+    /// - Parameter featureRegistry: The feature registry that should be used to find enabled features
+    @objc public static func enabledFeatures(in featureRegistry: FeatureRegistry) -> [String] {
+
+        var enabledFeatures:[String] = []
+        featureRegistry.features.forEach { labeledItem in
+            if let labeledFeature = labeledItem as? LabeledFeatureItem, labeledFeature.feature.enabled {
+                enabledFeatures.append(labeledFeature.label)
+            } else if let labeledGroup = labeledItem as? LabeledGroupItem {
+                labeledGroup.forEach { item in
+                    guard let labeledFeature = item as? LabeledFeatureItem, labeledFeature.feature.enabled else { return }
+                    enabledFeatures.append(labeledFeature.label)
+                }
+            }
+        }
+        return enabledFeatures
+    }
+}
