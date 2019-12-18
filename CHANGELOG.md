@@ -1,5 +1,8 @@
 # Release Notes
 
+## 2.2.0
+- Add function for retrieving currently enabled featured  
+  
 ## 2.1.1
   - Bug Fixes
     - Search results do not have swipe actions
