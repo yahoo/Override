@@ -125,8 +125,11 @@ extension LabeledGroupItem { /* Collection Support */
 
     private func configure(groupItem: LabeledGroupItem) {
         groupItem.forEach { item in
-            guard let featureItem = item as? LabeledFeatureItem else { return }
-            configure(featureItem: featureItem)
+            if let featureItem = item as? LabeledFeatureItem {
+                configure(featureItem: featureItem)
+            } else if let groupItem = item as? LabeledGroupItem {
+                configure(groupItem: groupItem)
+            }
         }
     }
 }
