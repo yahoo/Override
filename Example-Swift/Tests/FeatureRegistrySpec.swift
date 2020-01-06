@@ -118,18 +118,26 @@ class FeatureRegistrySpec: QuickSpec {
             }
 
             it("Returns enabled feature titles") {
+
+                class TestFeatureGroup: FeatureGroup {
+                    public let groupFeature1 = Feature()
+                    public let groupFeature2 = Feature(requiresRestart: false, defaultState: true)
+                    public let groupFeature3 = Feature()
+                }
                 class TestRegistry: FeatureRegistry {
                     public let feature1 = Feature(requiresRestart: false, defaultState: true)
                     public let feature2 = Feature()
                     public let feature3 = Feature()
                     public let feature4 = Feature()
+                    public let groupFeature = TestFeatureGroup()
                 }
 
                 let registry = TestRegistry(withFeatureStore: nil)
                 registry.feature3.override = .enabled
                 let enabledFeatureNames = TestRegistry.enabledFeatures(in: registry)
                 expect(enabledFeatureNames).to(equal([ "feature1",
-                                                       "feature3"]))
+                                                       "feature3",
+                                                       "groupFeature2"]))
             }
         }
 
