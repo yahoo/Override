@@ -42,6 +42,34 @@ class FeatureRegistrySpec: QuickSpec {
                 expect(registry.features).to(beEmpty())
             }
 
+            it("Initializes properly with nested feature groups") {
+                class TestRegistry: FeatureRegistry {
+                    class Group: FeatureGroup {
+                        class Group: FeatureGroup {
+                            public let feature1_1_1 = Feature()
+                        }
+
+                        public let feature1_1 = Feature(key: "KEY_TEST")
+                        public let group1_1 = Group()
+                    }
+
+                    public let group1 = Group()
+                }
+
+                let registry = TestRegistry(withFeatureStore: nil)
+                let featureNames = registry.features.map { return $0.label }
+
+                expect(featureNames).to(equal([ "group1" ]))
+
+                expect(registry.group1.feature1_1.enabled).to(beFalse())
+                expect(registry.group1.feature1_1.key).to(equal("KEY_TEST"))
+                expect(registry.group1.feature1_1.override).to(equal(OverrideState.featureDefault))
+
+                expect(registry.group1.group1_1.feature1_1_1.enabled).to(beFalse())
+                expect(registry.group1.group1_1.feature1_1_1.key).to(equal("feature1_1_1"))
+                expect(registry.group1.group1_1.feature1_1_1.override).to(equal(OverrideState.featureDefault))
+            }
+
             context("feature keys") {
 
                 let store = EphemeralFeatureStore()
@@ -117,28 +145,91 @@ class FeatureRegistrySpec: QuickSpec {
                                                 "feature7"]))
             }
 
-            it("Returns enabled feature titles") {
-
-                class TestFeatureGroup: FeatureGroup {
-                    public let groupFeature1 = Feature()
-                    public let groupFeature2 = Feature(requiresRestart: false, defaultState: true)
-                    public let groupFeature3 = Feature()
-                }
+            it("Extracts features, groups") {
                 class TestRegistry: FeatureRegistry {
-                    public let feature1 = Feature(requiresRestart: false, defaultState: true)
-                    public let feature2 = Feature()
-                    public let feature3 = Feature()
-                    public let feature4 = Feature()
-                    public let groupFeature = TestFeatureGroup()
+                    public let feature1 = Feature()
+                    public let group1 = FeatureGroup()
                 }
 
                 let registry = TestRegistry(withFeatureStore: nil)
-                registry.feature3.override = .enabled
-                let enabledFeatureNames = TestRegistry.enabledFeatures(in: registry)
-                expect(enabledFeatureNames).to(equal([ "feature1",
-                                                       "feature3",
-                                                       "groupFeature2"]))
+                let featureNames = registry.features.map { return $0.label }
+                expect(featureNames).to(equal([ "feature1",
+                                                "group1" ]))
             }
+
+            it("Extracts features, nested groups") {
+                func reduce(items: [LabeledItem]) -> [String] {
+                    return items.flatMap { item -> [String] in
+                        switch (item) {
+                        case let feature as LabeledFeatureItem:
+                            return [feature.label]
+
+                        case let group as LabeledGroupItem:
+                            let groupItemNames = reduce(items: Array(group)).map { "\(item.label):\($0)" }
+                            return [group.label] + groupItemNames
+
+                        default:
+                            return ["ERRORTYPE:\(type(of: item))"]
+                        }
+                    }
+                }
+
+                class TestRegistry: FeatureRegistry {
+
+                    class TestGroup: FeatureGroup {
+
+                        class NestedGroup: FeatureGroup {
+                            public let feature1_1_1 = Feature()
+                        }
+
+                        public let feature1_1 = Feature()
+                        public let group1_1 = NestedGroup()
+                    }
+
+                    public let feature1 = Feature()
+                    public let group1 = TestGroup()
+                }
+
+                let registry = TestRegistry(withFeatureStore: nil)
+                let featureNames = reduce(items: registry.features) //registry.features.map { return $0.label }
+                expect(featureNames).to(equal([ "feature1",
+                                                "group1",
+                                                "group1:feature1_1",
+                                                "group1:group1_1",
+                                                "group1:group1_1:feature1_1_1"
+                ]))
+            }
+        }
+
+        it("Returns enabled feature titles") {
+            class TestRegistry: FeatureRegistry {
+                class TestFeatureGroup: FeatureGroup {
+                    class TestNestedFeatureGroup: FeatureGroup {
+                        public let nestedGroupFeature1 = Feature()
+                        public let nestedGroupFeature2 = Feature(requiresRestart: false, defaultState: true)
+                        public let nestedGroupFeature3 = Feature()
+                    }
+
+                    public let groupFeature1 = Feature()
+                    public let groupFeature2 = Feature(requiresRestart: false, defaultState: true)
+                    public let groupFeature3 = Feature()
+                    public let nestedGroup1 = TestNestedFeatureGroup()
+                }
+
+                public let feature1 = Feature(requiresRestart: false, defaultState: true)
+                public let feature2 = Feature()
+                public let feature3 = Feature()
+                public let feature4 = Feature()
+                public let groupFeature1 = TestFeatureGroup()
+            }
+
+            let registry = TestRegistry(withFeatureStore: nil)
+            registry.feature3.override = .enabled
+            let enabledFeatureNames = TestRegistry.enabledFeatures(in: registry)
+            expect(enabledFeatureNames).to(equal([ "feature1",
+                                                   "feature3",
+                                                   "groupFeature2",
+                                                   "nestedGroupFeature2" ]))
         }
 
     }

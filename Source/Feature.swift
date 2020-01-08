@@ -5,10 +5,12 @@ import Foundation
 
 internal typealias FeatureOverrideHandler = (_ feature: AnyFeature, _ oldState: OverrideState) -> Void
 
-@objc public enum OverrideState: Int, CaseIterable {
+@objc public enum OverrideState: Int, CaseIterable, CustomDebugStringConvertible {
     case featureDefault
     case disabled
     case enabled
+
+    public var debugDescription: String { description }
 
     var description: String {
         switch self {
