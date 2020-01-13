@@ -132,6 +132,39 @@ extension LabeledGroupItem { /* Collection Support */
             }
         }
     }
+
+
+}
+
+internal extension Collection where Element == LabeledItem {
+
+
+    /// This function recursivly traverses through the elements in it's array and returns an array of transformed objects.
+    ///
+    /// - Parameters:
+    ///   - groupItems: Array of `LabelGroupItems` types that keeps track of the parent group items of a feature.
+    ///   - resultBuilder: Configuration block for creating the return type at the end of the tree
+    ///   - filter: Includes the element if the given predicate is satisfied
+    func depthFirstMap<T>(groupItems: [LabeledGroupItem] = [],
+        resultBuilder:(([LabeledGroupItem], LabeledFeatureItem) -> T),
+        filter: ((LabeledFeatureItem) -> Bool) = {_ in true }) -> [T] {
+
+        return self.flatMap { labeledItem -> [T] in
+            switch labeledItem {
+            case let featureGroup as LabeledGroupItem:
+                // Traverse into the group and add the group the nextGroupItems
+                var nextGroupItems = groupItems
+                nextGroupItems.append(featureGroup)
+                return featureGroup.depthFirstMap(groupItems: nextGroupItems, resultBuilder: resultBuilder, filter: filter)
+            case let feature as LabeledFeatureItem where filter(feature):
+                // For single items, use the result builder to create the required type
+                return [resultBuilder(groupItems, feature)]
+            default:
+                // For any custom subclass which we don't know about, bail.
+                return []
+            }
+        }
+    }
 }
 
 /// A container used to group multiple features into a logical set.
@@ -173,23 +206,12 @@ extension FeatureRegistry {
     /// Primarily used for debugging.
     /// - Parameter featureRegistry: The feature registry that should be used to find enabled features
     @objc public static func enabledFeatures(in featureRegistry: FeatureRegistry) -> [String] {
-        return featureRegistry.features.reduce(into: Array<LabeledFeatureItem>()) { (result, labeledItem) in
-            if let labeledFeature = labeledItem as? LabeledFeatureItem {
-                result.append(labeledFeature)
-            } else if let labeledGroup = labeledItem as? LabeledGroupItem {
-                addFeatures(from: labeledGroup, toResult: &result)
-            }
-        }.filter { $0.feature.enabled }.map { $0.label }
-    }
 
-    /// Recursive helper function that traverses a FeatureGroup and adds LabeledFeatureItem to the provided `results` array.
-    private static func addFeatures(from featureGroup: LabeledGroupItem, toResult result: inout [LabeledFeatureItem]) {
-        featureGroup.forEach {
-            if let labeledFeature = $0 as? LabeledFeatureItem {
-                result.append(labeledFeature)
-            } else if let groupItem = $0 as? LabeledGroupItem {
-                addFeatures(from: groupItem, toResult: &result)
-            }
+        return featureRegistry.features.depthFirstMap( resultBuilder: { (groupStack, feature) -> String in
+            let mergedString = groupStack.map { $0.label.unCamelCased }.joined(separator: " → ")
+            return mergedString.isEmpty ? feature.label.unCamelCased : mergedString + " → \(feature.label.unCamelCased)"
+        }) { (featureItem) -> Bool in
+            featureItem.feature.enabled
         }
     }
 }
