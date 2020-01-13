@@ -202,7 +202,9 @@ internal extension Collection where Element == LabeledItem {
 
 extension FeatureRegistry {
 
-    /// Returns the label values for the enabled features in the provided registry.
+    /// Returns the names for the enabled features in the provided registry.
+    /// If a feature is embedded in a Freature Group, the group name is prepended
+    /// and formatted like: "feature_group → feature_name"
     /// Primarily used for debugging.
     /// - Parameter featureRegistry: The feature registry that should be used to find enabled features
     @objc public static func enabledFeatures(in featureRegistry: FeatureRegistry) -> [String] {
