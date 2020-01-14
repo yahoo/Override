@@ -107,7 +107,7 @@ extension FeaturesPresenter { /* UITableViewController Support Methods */
             return
         }
 
-        filteredFeatures = allFeatures.depthFirstMap(resultBuilder: { groupStack, feature in
+        filteredFeatures = allFeatures.depthFirstCompactMap(resultBuilder: { groupStack, feature in
                                                 return LabeledSearchResultItem(groupStack: groupStack, result: feature)
                                             },
                                             filter: { feature in

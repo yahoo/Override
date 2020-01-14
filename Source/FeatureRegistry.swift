@@ -145,7 +145,7 @@ internal extension Collection where Element == LabeledItem {
     ///   - groupItems: Array of `LabelGroupItems` types that keeps track of the parent group items of a feature.
     ///   - resultBuilder: Configuration block for creating the return type at the end of the tree
     ///   - filter: Includes the element if the given predicate is satisfied
-    func depthFirstMap<T>(groupItems: [LabeledGroupItem] = [],
+    func depthFirstCompactMap<T>(groupItems: [LabeledGroupItem] = [],
         resultBuilder:(([LabeledGroupItem], LabeledFeatureItem) -> T),
         filter: ((LabeledFeatureItem) -> Bool) = {_ in true }) -> [T] {
 
@@ -155,7 +155,7 @@ internal extension Collection where Element == LabeledItem {
                 // Traverse into the group and add the group to nextGroupItems
                 var nextGroupItems = groupItems
                 nextGroupItems.append(featureGroup)
-                return featureGroup.depthFirstMap(groupItems: nextGroupItems, resultBuilder: resultBuilder, filter: filter)
+                return featureGroup.depthFirstCompactMap(groupItems: nextGroupItems, resultBuilder: resultBuilder, filter: filter)
             case let feature as LabeledFeatureItem where filter(feature):
                 // For single items, use the result builder to create the required type
                 return [resultBuilder(groupItems, feature)]
@@ -209,7 +209,7 @@ extension FeatureRegistry {
     /// - Parameter featureRegistry: The feature registry that should be used to find enabled features
     @objc public static func enabledFeatures(in featureRegistry: FeatureRegistry) -> [String] {
 
-        return featureRegistry.features.depthFirstMap( resultBuilder: { (groupStack, feature) -> String in
+        return featureRegistry.features.depthFirstCompactMap( resultBuilder: { (groupStack, feature) -> String in
             let mergedString = groupStack.map { $0.label.unCamelCased }.joined(separator: " → ")
             return mergedString.isEmpty ? feature.label.unCamelCased : mergedString + " → \(feature.label.unCamelCased)"
         }) { (featureItem) -> Bool in
