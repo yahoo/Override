@@ -152,7 +152,7 @@ internal extension Collection where Element == LabeledItem {
         return self.flatMap { labeledItem -> [T] in
             switch labeledItem {
             case let featureGroup as LabeledGroupItem:
-                // Traverse into the group and add the group the nextGroupItems
+                // Traverse into the group and add the group to nextGroupItems
                 var nextGroupItems = groupItems
                 nextGroupItems.append(featureGroup)
                 return featureGroup.depthFirstMap(groupItems: nextGroupItems, resultBuilder: resultBuilder, filter: filter)
