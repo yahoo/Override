@@ -24,7 +24,7 @@ Feature flags typically have 3 states: on, off, or defaulted. The default state 
 
 CocoaPods is a dependency manager for Cocoa projects. For usage and installation instructions, [visit their website](https://cocoapods.org). To integrate Override into your Xcode project using CocoaPods, specify it in your Podfile:
 
-`pod 'YMOverride', '~> 1.0'`
+`pod 'YMOverride', '~> 2.2'`
 
 ## Usage
 
