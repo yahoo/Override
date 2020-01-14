@@ -213,23 +213,23 @@ class FeatureRegistrySpec: QuickSpec {
                     public let groupFeature1 = Feature()
                     public let groupFeature2 = Feature(requiresRestart: false, defaultState: true)
                     public let groupFeature3 = Feature()
-                    public let nestedGroup1 = TestNestedFeatureGroup()
+                    public let nestedGroup = TestNestedFeatureGroup()
                 }
 
                 public let feature1 = Feature(requiresRestart: false, defaultState: true)
                 public let feature2 = Feature()
                 public let feature3 = Feature()
                 public let feature4 = Feature()
-                public let groupFeature1 = TestFeatureGroup()
+                public let groupFeature = TestFeatureGroup()
             }
 
             let registry = TestRegistry(withFeatureStore: nil)
             registry.feature3.override = .enabled
             let enabledFeatureNames = TestRegistry.enabledFeatures(in: registry)
-            expect(enabledFeatureNames).to(equal([ "feature1",
-                                                   "feature3",
-                                                   "groupFeature2",
-                                                   "nestedGroupFeature2" ]))
+            expect(enabledFeatureNames).to(equal([ "Feature1",
+                                                   "Feature3",
+                                                   "Group Feature → Group Feature2",
+                                                   "Group Feature → Nested Group → Nested Group Feature2" ]))
         }
 
     }

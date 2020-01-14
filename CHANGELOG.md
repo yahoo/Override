@@ -1,7 +1,7 @@
 # Release Notes
 
 ## 2.2.0
-- Add function for retrieving currently enabled featured  
+- Add function for retrieving currently enabled features as an array of String objects
   
 ## 2.1.1
   - Bug Fixes

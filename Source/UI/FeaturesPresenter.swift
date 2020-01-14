@@ -101,34 +101,18 @@ extension FeaturesPresenter { /* UITableViewController Support Methods */
         let result: LabeledFeatureItem
     }
 
-    private func depthFirstFilter<T: Collection>(features: T, searchPath: [LabeledGroupItem], query: String) -> [LabeledSearchResultItem] where T.Element == LabeledItem {
-        return features.flatMap { labeledItem -> [LabeledSearchResultItem] in
-            switch labeledItem {
-            case let featureGroup as LabeledGroupItem:
-                // Traverse into the group, but to not match on the group item itself
-                var nextSearchPath = searchPath
-                nextSearchPath.append(featureGroup)
-                return depthFirstFilter(features: featureGroup, searchPath: nextSearchPath, query: query)
-
-            case let feature as LabeledFeatureItem where feature.label.lowercased().contains(query):
-                // For single items, return if they are a match
-                return [LabeledSearchResultItem(groupStack: searchPath, result: feature)]
-
-            default:
-                // For any custom subclass which we don't know about, bail.
-                return [LabeledSearchResultItem]()
-            }
-        }
-    }
-
     func filter(_ tableView: UITableView, query: String?) {
         guard let query = query?.lowercased() else {
             filteredFeatures = nil
             return
         }
 
-        filteredFeatures = depthFirstFilter(features: allFeatures, searchPath: [LabeledGroupItem](), query: query)
-
+        filteredFeatures = allFeatures.depthFirstCompactMap(resultBuilder: { groupStack, feature in
+                                                return LabeledSearchResultItem(groupStack: groupStack, result: feature)
+                                            },
+                                            filter: { feature in
+                                                return feature.label.lowercased().contains(query)
+                                            })
         tableView.reloadData()
     }
 
