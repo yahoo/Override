@@ -16,11 +16,16 @@ class FeaturesPresenter: NSObject, UITableViewDataSource {
         case cancel
     }
 
+    enum FilterScope: String, CaseIterable {
+        case all = "No Filter"
+        case enabled = "Enabled"
+        case disabled = "Disabled"
+        case overridden = "Overridden"
+    }
+
     weak var output: UIViewController?
 
-    var features: [LabeledItem] {
-        return filteredFeatures ?? allFeatures
-    }
+    var features: [LabeledItem] { filteredFeatures ?? allFeatures }
 
     private let allFeatures: [LabeledItem]
     private var filteredFeatures: [LabeledSearchResultItem]?
@@ -101,21 +106,6 @@ extension FeaturesPresenter { /* UITableViewController Support Methods */
         let result: LabeledFeatureItem
     }
 
-    func filter(_ tableView: UITableView, query: String?) {
-        guard let query = query?.lowercased() else {
-            filteredFeatures = nil
-            return
-        }
-
-        filteredFeatures = allFeatures.depthFirstCompactMap(resultBuilder: { groupStack, feature in
-                                                return LabeledSearchResultItem(groupStack: groupStack, result: feature)
-                                            },
-                                            filter: { feature in
-                                                return feature.label.lowercased().contains(query)
-                                            })
-        tableView.reloadData()
-    }
-
     func updateFeature(tableView: UITableView, indexPath: IndexPath) {
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }
@@ -158,6 +148,114 @@ extension FeaturesPresenter { /* UITableViewController Support Methods */
         } else if let output = output {
             output.present(groupTableViewController, animated: false) {
                 tableView.deselectRow(at: indexPath, animated: false)
+            }
+        }
+    }
+}
+
+fileprivate extension AnyFeature {
+
+    var shareSummary: String {
+        let onOff = enabled ? "ON" : "OFF"
+        let reason = override == .featureDefault ? "default" : "override"
+        return "\(onOff) by \(reason)"
+    }
+}
+
+extension FeaturesPresenter { /* Sharing */
+    func share() {
+        guard let output = output else { return }
+        let shareString = features.depthFirstCompactMap( resultBuilder: { (groupStack, feature) -> String in
+            let mergedString = groupStack.map { $0.label.unCamelCased }.joined(separator: " → ")
+            let featureString = "\(feature.label.unCamelCased) [\(feature.feature.shareSummary)]"
+            return mergedString.isEmpty ? featureString : "\(mergedString) → \(featureString)"
+        }).joined(separator: "\n")
+
+        if output.traitCollection.userInterfaceIdiom != .pad {
+            let activityVC = UIActivityViewController(activityItems: [ shareString ], applicationActivities: nil)
+            output.present(activityVC, animated: true)
+        } else {
+
+        }
+    }
+}
+
+// MARK: Filter Support Functions
+
+extension FeaturesPresenter {
+
+    /// Filter by search query
+    /// - Parameters:
+    ///   - tableView: Table view containing the results
+    ///   - query: The query to search for and filter results.
+    func filter(_ tableView: UITableView, query: String?, scope: FeaturesPresenter.FilterScope = .all) {
+        defer {
+            tableView.reloadData()
+        }
+
+        //
+        if let query = query, query.isEmpty {
+            filteredFeatures = [] // Search query is "", happens when search field is active
+            return
+        } else if scope == .all {
+            filteredFeatures = nil // Search query is not active
+            return
+        }
+
+        // First scope the features down
+        let scoped = allFeatures.filter(scope: scope)
+
+        // If there is no query, convert the scoped results to Search Results
+        let filterFun: (LabeledFeatureItem) -> Bool
+        if let query = query?.lowercased(), !query.isEmpty {
+            filterFun = { $0.label.lowercased().contains(query) }
+        } else {
+            filterFun = { _ in true }
+        }
+
+        filteredFeatures = scoped.depthFirstCompactMap(resultBuilder: { groupStack, feature in
+            return LabeledSearchResultItem(groupStack: groupStack, result: feature)
+        }, filter: filterFun)
+    }
+}
+
+fileprivate extension Collection where Element == LabeledItem {
+
+    /// Filter by FeaturesPresenter.FilterScope scopes
+    /// - Parameters:
+    ///   - scope: The scope to filter to
+    func filter(scope: FeaturesPresenter.FilterScope) -> [Self.Element] {
+        let filterState: Set<OverrideState>
+        switch scope {
+        case .all:
+            return Array(self)
+        case .disabled:
+            filterState = Set(arrayLiteral: .disabled)
+        case .enabled:
+            filterState = Set(arrayLiteral: .enabled)
+        case .overridden:
+            filterState = Set(arrayLiteral: .enabled, .disabled)
+        }
+
+        return filter(states: filterState)
+    }
+
+    /// Filter by scope consisting of OverrideState
+    /// - Parameters:
+    ///   - states: Set of OverrideState scopes to filter by
+    func filter(states: Set<OverrideState>) -> [Self.Element] {
+        return self.reduce(into: [LabeledItem]()) { (accumulator, item) in
+            if let item = item as? LabeledFeatureItemLike {
+                if states.contains(item.feature.override) {
+                    accumulator.append(item)
+                }
+            }
+            else if let group = item as? LabeledGroupItem {
+                let filteredFeatures = group.filter(states: states)
+                if !filteredFeatures.isEmpty {
+                    let filteredGroup = LabeledGroupItem(label: item.label, features: Array(filteredFeatures))
+                    accumulator.append(filteredGroup)
+                }
             }
         }
     }

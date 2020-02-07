@@ -4,7 +4,7 @@
 import Foundation
 import UIKit
 
-class FeaturesInteractor: NSObject, UITableViewDelegate, UISearchResultsUpdating {
+class FeaturesInteractor: NSObject, UITableViewDelegate {
 
     let presenter: FeaturesPresenter
 
@@ -13,11 +13,28 @@ class FeaturesInteractor: NSObject, UITableViewDelegate, UISearchResultsUpdating
     }
 }
 
-extension FeaturesInteractor {
+extension FeaturesInteractor: UISearchResultsUpdating {
     public func updateSearchResults(for searchController: UISearchController) {
-        guard let searchResultsVC = (searchController.searchResultsController as? FeaturesTableViewController)
+        guard let featuresVC = presenter.output as? FeaturesTableViewController
             else { return }
 
-        searchResultsVC.presenter.filter(searchResultsVC.tableView, query: searchController.searchBar.text)
+        let selectedScope = searchController.searchBar.selectedScopeButtonIndex
+        guard let buttonTitles = searchController.searchBar.scopeButtonTitles,
+            selectedScope < buttonTitles.count else { return }
+
+        let scope: FeaturesPresenter.FilterScope
+        switch buttonTitles[selectedScope].lowercased() {
+        case "enabled":
+            scope = .enabled
+        case "disabled":
+            scope = .disabled
+        case "overridden":
+            scope = .overridden
+        default:
+            scope = .all
+        }
+
+        let query = searchController.searchBar.searchTextField.isEditing ? searchController.searchBar.text : nil
+        featuresVC.presenter.filter(featuresVC.tableView, query: query, scope: scope)
     }
 }

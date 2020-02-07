@@ -40,13 +40,15 @@ import UIKit
         tableView.delegate = interactor
 
         #if os(iOS)
-        tableView.estimatedRowHeight = 60
+        tableView.estimatedRowHeight = 50
 
         // Setup the search/filter interface
-        let searchController = UISearchController(searchResultsController: FeaturesTableViewController(features: presenter.features))
+        let searchController = UISearchController(searchResultsController: nil)
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchResultsUpdater = interactor
+        searchController.searchBar.showsScopeBar = true
+        searchController.searchBar.scopeButtonTitles = FeaturesPresenter.FilterScope.allCases.map { $0.rawValue }
         definesPresentationContext = true
 
         if #available(iOS 11.0, *) {
@@ -56,6 +58,16 @@ import UIKit
             tableView.tableHeaderView = searchController.searchBar
         }
         #endif
+    }
+
+    public override var navigationItem: UINavigationItem {
+        let rightItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(share))
+        super.navigationItem.rightBarButtonItem = rightItem
+        return super.navigationItem
+    }
+
+    @objc func share() {
+        self.presenter.share()
     }
 }
 

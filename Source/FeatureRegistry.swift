@@ -165,6 +165,16 @@ internal extension Collection where Element == LabeledItem {
             }
         }
     }
+
+    /// Return a readable array of all currently enabled features. Includes both remotely or locally enabled features, in a flattened textual list.
+    var enabledFeatures: [String] {
+        return depthFirstCompactMap( resultBuilder: { (groupStack, feature) -> String in
+            let mergedString = groupStack.map { $0.label.unCamelCased }.joined(separator: " → ")
+            return mergedString.isEmpty ? feature.label.unCamelCased : mergedString + " → \(feature.label.unCamelCased)"
+        }) { (featureItem) -> Bool in
+            featureItem.feature.enabled
+        }
+    }
 }
 
 /// A container used to group multiple features into a logical set.
