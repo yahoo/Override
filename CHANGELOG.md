@@ -1,8 +1,14 @@
 # Release Notes
 
+## 2.3.0
+- Ability to copy a readable string with a list of all displayed features, enabled, disabled or overriden features!
+- Share button added to the UI
+- Add scope bars to the default UI to filter enabled, disabled, and overridden features
+- Search bar supports searching within scopes (see last point) on iOS 13+
+
 ## 2.2.0
 - Add function for retrieving currently enabled features as an array of String objects
-  
+
 ## 2.1.1
   - Bug Fixes
     - Search results do not have swipe actions
