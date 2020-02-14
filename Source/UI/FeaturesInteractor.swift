@@ -13,13 +13,34 @@ class FeaturesInteractor: NSObject, UITableViewDelegate {
     }
 }
 
-extension FeaturesInteractor: UISearchResultsUpdating {
+extension FeaturesInteractor: UISearchResultsUpdating, UISearchBarDelegate {
+
     public func updateSearchResults(for searchController: UISearchController) {
+        updateResultsForSearchBar(searchController.searchBar)
+    }
+
+    /// Handle search bar scope button taps. This delegate method does nothing for iOS 13+ since that version
+    /// invokes the updateSearchResults(for:) method before this one. There is no need to use UISearchBarDelegate
+    /// in iOS 13+ as of 2/14/2020
+    /// - Parameters:
+    ///   - searchBar: The search bar to use to update results
+    ///   - selectedScope: The new selected scope index
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        // In iOS 13, updateSearchResults(for:) in UISearchResultsUpdating is invoked for scope
+        // changes, so the logic is handled in there.
+        if #available(iOS 13, *) {
+            return
+        }
+
+        updateResultsForSearchBar(searchBar)
+    }
+
+    func updateResultsForSearchBar(_ searchBar: UISearchBar) {
         guard let featuresVC = presenter.output as? FeaturesTableViewController
             else { return }
 
-        let selectedScope = searchController.searchBar.selectedScopeButtonIndex
-        guard let buttonTitles = searchController.searchBar.scopeButtonTitles,
+        let selectedScope = searchBar.selectedScopeButtonIndex
+        guard let buttonTitles = searchBar.scopeButtonTitles,
             selectedScope < buttonTitles.count else { return }
 
         let scope: FeaturesPresenter.FilterScope
@@ -34,7 +55,14 @@ extension FeaturesInteractor: UISearchResultsUpdating {
             scope = .all
         }
 
-        let query = searchController.searchBar.searchTextField.isEditing ? searchController.searchBar.text : nil
+        let query: String?
+        if #available(iOS 13, *) {
+            query = searchBar.searchTextField.isEditing ? searchBar.text : nil
+        } else {
+            // Before iOS 13 the editing state was less explicit. In all versions of iOS, the search
+            // text is "" even when the search bar was never tapped. It isn't ever .none()...
+            query = searchBar.isFirstResponder ? searchBar.text : nil
+        }
         featuresVC.presenter.filter(featuresVC.tableView, query: query, scope: scope)
     }
 }

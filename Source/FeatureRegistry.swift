@@ -3,6 +3,7 @@
 
 import Foundation
 
+// MARK: - Internal FeatureRegistry Support Wrappers
 protocol LabeledItem {
     var label: String { get }
 }
@@ -11,7 +12,7 @@ protocol LabeledFeatureItemLike: LabeledItem {
     var feature: AnyFeature { get }
 }
 
-struct LabeledFeatureItem: LabeledFeatureItemLike {
+struct LabeledFeatureItem: LabeledFeatureItemLike, CustomStringConvertible {
     let label: String
     let feature: AnyFeature
 }
@@ -33,6 +34,14 @@ struct LabeledGroupItem: LabeledItem, Collection {
     }
 }
 
+extension LabeledFeatureItemLike where Self: CustomStringConvertible {
+    var description: String {
+        let onOff = feature.enabled ? "ON" : "OFF"
+        let reason = feature.override == .featureDefault ? "default" : "override"
+        return "\(label.unCamelCased) [\(onOff) by \(reason)]"
+    }
+}
+
 extension LabeledGroupItem { /* Collection Support */
     var startIndex: Int { return features.startIndex }
 
@@ -47,6 +56,8 @@ extension LabeledGroupItem { /* Collection Support */
     }
 }
 
+// MARK: – Feature Registry
+
 /// FeatureRegistry is intended to be subclassed at least once by each integration
 /// of Override. The registry serves as a container for a collection of Features,
 /// and performs internal wiring to ensure that features reflect correct values
@@ -55,7 +66,10 @@ extension LabeledGroupItem { /* Collection Support */
 
     @objc public let featureStore: FeatureStore
 
-    internal private(set) var features = [LabeledItem]()
+    // Build the features list. This cannot be done prior to initialization due
+    // to use of 'self'. We don't use 'allFeatures' directly in the public API
+    // because it is a computed var, not stored one-time.
+    internal private(set) lazy var features = featureItems
     internal private(set) var featuresByKey = [String: LabeledItem]()
 
     // Since the feature change handler is currently completely generic,
@@ -82,11 +96,6 @@ extension LabeledGroupItem { /* Collection Support */
         }
 
         super.init()
-
-        // Build the features list. This cannot be done prior to initialization due
-        // to use of 'self'. We don't use 'allFeatures' directly in the public API
-        // because it is a computed var, not stored one-time.
-        features = featureItems
 
         features.forEach { labeledItem in
             if let labeledFeature = labeledItem as? LabeledFeatureItem {
@@ -136,16 +145,15 @@ extension LabeledGroupItem { /* Collection Support */
 
 }
 
-internal extension Collection where Element == LabeledItem {
-
-
+// MARK: Feature Tree Traversal
+extension Collection where Element == LabeledItem {
     /// This function recursivly traverses through the elements in it's array and returns an array of transformed objects.
     ///
     /// - Parameters:
     ///   - groupItems: Array of `LabelGroupItems` types that keeps track of the parent group items of a feature.
     ///   - resultBuilder: Configuration block for creating the return type at the end of the tree
     ///   - filter: Includes the element if the given predicate is satisfied
-    func depthFirstCompactMap<T>(groupItems: [LabeledGroupItem] = [],
+    internal func depthFirstCompactMap<T>(groupItems: [LabeledGroupItem] = [],
         resultBuilder:(([LabeledGroupItem], LabeledFeatureItem) -> T),
         filter: ((LabeledFeatureItem) -> Bool) = {_ in true }) -> [T] {
 
@@ -166,64 +174,48 @@ internal extension Collection where Element == LabeledItem {
         }
     }
 
-    /// Return a readable array of all currently enabled features. Includes both remotely or locally enabled features, in a flattened textual list.
-    var enabledFeatures: [String] {
-        return depthFirstCompactMap( resultBuilder: { (groupStack, feature) -> String in
+    private func flattenedDescription(enabled: Bool? = nil, overrideStates: [OverrideState]? = nil) -> [String] {
+        let overrideStateSet = Set(overrideStates ?? [])
+
+        return depthFirstCompactMap(resultBuilder: { (groupStack, feature) -> String in
             let mergedString = groupStack.map { $0.label.unCamelCased }.joined(separator: " → ")
-            return mergedString.isEmpty ? feature.label.unCamelCased : mergedString + " → \(feature.label.unCamelCased)"
+            return mergedString.isEmpty ? feature.description : "\(mergedString) → \(feature)"
         }) { (featureItem) -> Bool in
-            featureItem.feature.enabled
+            // If enabled flag was provided, filter out non-matches
+            if let enabled = enabled, featureItem.feature.enabled != enabled {
+                return false
+            }
+
+            // If override state was provided, filter out non-matches
+            return overrideStates == nil || overrideStateSet.contains(featureItem.feature.override)
         }
     }
-}
 
-/// A container used to group multiple features into a logical set.
-///
-/// Feature aid in grouping related features for display and
-/// interactivity purposes. The Feature to FeatureGroup mapping is
-/// exposed by the registry so that it can be used for formatting
-/// and display purposes.
-///
-/// class ThemeFeatures: FeatureGroup {
-///     let darkMode: Feature()
-///
-///     let italicizeFonts: Feature()
-/// }
-///
-/// class MyFeatures: FeatureRegistry {
-///     let portraitVideos = Feature()
-///
-///     let themeFeatures = ThemeFeatures()
-/// }
-///
-/// In the example above, MyFeatures contains a top-level feature
-/// for "portrait videos", and a group of features for app "theme".
-/// Programatically, these features can be accessed like so:
-///
-/// if myFeatures.portraitVideos.enabled { ... }
-/// if myFeatures.themeFeatures.darkMode.enabled { ... }
-///
-/// FeatureGroup instances may not be nested at this time.
-@objc open class FeatureGroup: NSObject, FeatureProvider, FeatureExtractableByMirror {
-    // Potentially add helper properties here in the future.
-    // This is a class (vs protocol) because we need to declare
-    // internal conformance to FeatureExtractable for Obj-C compat.
-}
-
-extension FeatureRegistry {
-
-    /// Returns the names for the enabled features in the provided registry.
+    /// Returns the names for the enabled features in the provided list.
     /// If a feature is embedded in a Freature Group, the group name is prepended
     /// and formatted like: "feature_group → feature_name"
-    /// Primarily used for debugging.
-    /// - Parameter featureRegistry: The feature registry that should be used to find enabled features
-    @objc public static func enabledFeatures(in featureRegistry: FeatureRegistry) -> [String] {
+    var enabledFeaturesDescription: [String] {
+        return flattenedDescription(enabled: true)
+    }
 
-        return featureRegistry.features.depthFirstCompactMap( resultBuilder: { (groupStack, feature) -> String in
-            let mergedString = groupStack.map { $0.label.unCamelCased }.joined(separator: " → ")
-            return mergedString.isEmpty ? feature.label.unCamelCased : mergedString + " → \(feature.label.unCamelCased)"
-        }) { (featureItem) -> Bool in
-            featureItem.feature.enabled
-        }
+    /// Returns the names for the disabled features in the provided list.
+    /// If a feature is embedded in a Freature Group, the group name is prepended
+    /// and formatted like: "feature_group → feature_name"
+    var disabledFeaturesDescription: [String] {
+        return flattenedDescription(enabled: false)
+    }
+
+    /// Returns the names for any locally overridden features in the provided list.
+    /// If a feature is embedded in a Freature Group, the group name is prepended
+    /// and formatted like: "feature_group → feature_name"
+    var overriddenFeaturesDescription: [String] {
+        return flattenedDescription(overrideStates: [ .enabled, .disabled ])
+    }
+
+    /// Returns the names for all features in the provided list.
+    /// If a feature is embedded in a Freature Group, the group name is prepended
+    /// and formatted like: "feature_group → feature_name"
+    var featuresDescription: [String] {
+        return flattenedDescription()
     }
 }

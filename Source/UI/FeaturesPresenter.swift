@@ -153,30 +153,14 @@ extension FeaturesPresenter { /* UITableViewController Support Methods */
     }
 }
 
-fileprivate extension AnyFeature {
-
-    var shareSummary: String {
-        let onOff = enabled ? "ON" : "OFF"
-        let reason = override == .featureDefault ? "default" : "override"
-        return "\(onOff) by \(reason)"
-    }
-}
-
 extension FeaturesPresenter { /* Sharing */
-    func share() {
+    func share(sender from: UIBarButtonItem) {
         guard let output = output else { return }
-        let shareString = features.depthFirstCompactMap( resultBuilder: { (groupStack, feature) -> String in
-            let mergedString = groupStack.map { $0.label.unCamelCased }.joined(separator: " → ")
-            let featureString = "\(feature.label.unCamelCased) [\(feature.feature.shareSummary)]"
-            return mergedString.isEmpty ? featureString : "\(mergedString) → \(featureString)"
-        }).joined(separator: "\n")
 
-        if output.traitCollection.userInterfaceIdiom != .pad {
-            let activityVC = UIActivityViewController(activityItems: [ shareString ], applicationActivities: nil)
-            output.present(activityVC, animated: true)
-        } else {
-
-        }
+        let oneLineDescription = features.featuresDescription.joined(separator: "\n")
+        let activityVC = UIActivityViewController(activityItems: [ oneLineDescription ], applicationActivities: nil)
+        activityVC.popoverPresentationController?.barButtonItem = from
+        output.present(activityVC, animated: true)
     }
 }
 
@@ -197,7 +181,7 @@ extension FeaturesPresenter {
         if let query = query, query.isEmpty {
             filteredFeatures = [] // Search query is "", happens when search field is active
             return
-        } else if scope == .all {
+        } else if query == nil, scope == .all {
             filteredFeatures = nil // Search query is not active
             return
         }
@@ -225,33 +209,38 @@ fileprivate extension Collection where Element == LabeledItem {
     /// - Parameters:
     ///   - scope: The scope to filter to
     func filter(scope: FeaturesPresenter.FilterScope) -> [Self.Element] {
-        let filterState: Set<OverrideState>
         switch scope {
         case .all:
             return Array(self)
         case .disabled:
-            filterState = Set(arrayLiteral: .disabled)
+            return filter(enabled: false)
         case .enabled:
-            filterState = Set(arrayLiteral: .enabled)
+            return filter(enabled: true)
         case .overridden:
-            filterState = Set(arrayLiteral: .enabled, .disabled)
+            return filter(overrideStates: Set(arrayLiteral: .enabled, .disabled))
         }
-
-        return filter(states: filterState)
     }
 
     /// Filter by scope consisting of OverrideState
     /// - Parameters:
     ///   - states: Set of OverrideState scopes to filter by
-    func filter(states: Set<OverrideState>) -> [Self.Element] {
+    func filter(enabled: Bool? = nil, overrideStates: Set<OverrideState>? = nil) -> [Self.Element] {
         return self.reduce(into: [LabeledItem]()) { (accumulator, item) in
             if let item = item as? LabeledFeatureItemLike {
-                if states.contains(item.feature.override) {
-                    accumulator.append(item)
+                if let enabled = enabled, item.feature.enabled != enabled {
+                    // enabled is specified and does not match
+                    return
                 }
+
+                if let states = overrideStates, !states.contains(item.feature.override) {
+                    // override state is specified and does not match
+                    return
+                }
+
+                accumulator.append(item)
             }
             else if let group = item as? LabeledGroupItem {
-                let filteredFeatures = group.filter(states: states)
+                let filteredFeatures = group.filter(enabled: enabled, overrideStates: overrideStates)
                 if !filteredFeatures.isEmpty {
                     let filteredGroup = LabeledGroupItem(label: item.label, features: Array(filteredFeatures))
                     accumulator.append(filteredGroup)

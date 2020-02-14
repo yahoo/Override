@@ -47,6 +47,15 @@ import UIKit
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchResultsUpdater = interactor
+        if #available(iOS 13, *) {
+            // In iOS 13, searchController.searchResultsUpdater is called whenever the
+            // search bar scope seletion changes. There is no need for a search bar delegate.
+        } else {
+            // Pre-iOS 13, the search bar delegate was the only way to know if the scope
+            // buttons changed, and to update the results. In iOS 13 this delegate is
+            // made redundant.
+            searchController.searchBar.delegate = interactor
+        }
         searchController.searchBar.showsScopeBar = true
         searchController.searchBar.scopeButtonTitles = FeaturesPresenter.FilterScope.allCases.map { $0.rawValue }
         definesPresentationContext = true
@@ -66,8 +75,8 @@ import UIKit
         return super.navigationItem
     }
 
-    @objc func share() {
-        self.presenter.share()
+    @objc func share(sender: UIBarButtonItem) {
+        self.presenter.share(sender: sender)
     }
 }
 

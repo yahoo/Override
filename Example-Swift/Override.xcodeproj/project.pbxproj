@@ -685,6 +685,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yahoo.Override-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -700,6 +701,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yahoo.Override-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

@@ -201,37 +201,53 @@ class FeatureRegistrySpec: QuickSpec {
             }
         }
 
-        it("Returns enabled feature titles") {
+        describe("Feature List Extension") {
+
             class TestRegistry: FeatureRegistry {
                 class TestFeatureGroup: FeatureGroup {
                     class TestNestedFeatureGroup: FeatureGroup {
                         public let nestedGroupFeature1 = Feature()
                         public let nestedGroupFeature2 = Feature(requiresRestart: false, defaultState: true)
-                        public let nestedGroupFeature3 = Feature()
                     }
 
                     public let groupFeature1 = Feature()
                     public let groupFeature2 = Feature(requiresRestart: false, defaultState: true)
-                    public let groupFeature3 = Feature()
                     public let nestedGroup = TestNestedFeatureGroup()
                 }
 
                 public let feature1 = Feature(requiresRestart: false, defaultState: true)
                 public let feature2 = Feature()
                 public let feature3 = Feature()
-                public let feature4 = Feature()
                 public let groupFeature = TestFeatureGroup()
             }
 
             let registry = TestRegistry(withFeatureStore: nil)
             registry.feature3.override = .enabled
-            let enabledFeatureNames = TestRegistry.enabledFeatures(in: registry)
-            expect(enabledFeatureNames).to(equal([ "Feature1",
-                                                   "Feature3",
-                                                   "Group Feature → Group Feature2",
-                                                   "Group Feature → Nested Group → Nested Group Feature2" ]))
-        }
+            registry.groupFeature.groupFeature1.override = .disabled
+            registry.groupFeature.nestedGroup.nestedGroupFeature1.override = .disabled
 
+            it("Returns enabled feature titles") {
+                let enabledFeatureNames = registry.features.enabledFeaturesDescription
+                expect(enabledFeatureNames).to(equal([ "Feature1 [ON by default]",
+                                                       "Feature3 [ON by override]",
+                                                       "Group Feature → Group Feature2 [ON by default]",
+                                                       "Group Feature → Nested Group → Nested Group Feature2 [ON by default]" ]))
+            }
+
+            it("Returns disabled feature titles") {
+                let enabledFeatureNames = registry.features.disabledFeaturesDescription
+                expect(enabledFeatureNames).to(equal([ "Feature2 [OFF by default]",
+                                                       "Group Feature → Group Feature1 [OFF by override]",
+                                                       "Group Feature → Nested Group → Nested Group Feature1 [OFF by override]" ]))
+            }
+
+            it("Returns overridden feature titles") {
+                let enabledFeatureNames = registry.features.overriddenFeaturesDescription
+                expect(enabledFeatureNames).to(equal([ "Feature3 [ON by override]",
+                                                       "Group Feature → Group Feature1 [OFF by override]",
+                                                       "Group Feature → Nested Group → Nested Group Feature1 [OFF by override]" ]))
+            }
+        }
     }
 
 }
