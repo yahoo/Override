@@ -9,7 +9,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
 
     var window: UIWindow?
 
-    #if swift(>=5.0)
+    #if swift(>=4.2)
     typealias LaunchOptionsKeyType = UIApplication.LaunchOptionsKey
     #else
     typealias LaunchOptionsKeyType = UIApplicationLaunchOptionsKey
