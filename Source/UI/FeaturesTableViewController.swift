@@ -40,13 +40,24 @@ import UIKit
         tableView.delegate = interactor
 
         #if os(iOS)
-        tableView.estimatedRowHeight = 60
+        tableView.estimatedRowHeight = 50
 
         // Setup the search/filter interface
-        let searchController = UISearchController(searchResultsController: FeaturesTableViewController(features: presenter.features))
+        let searchController = UISearchController(searchResultsController: nil)
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchResultsUpdater = interactor
+        if #available(iOS 13, *) {
+            // In iOS 13, searchController.searchResultsUpdater is called whenever the
+            // search bar scope seletion changes. There is no need for a search bar delegate.
+        } else {
+            // Pre-iOS 13, the search bar delegate was the only way to know if the scope
+            // buttons changed, and to update the results. In iOS 13 this delegate is
+            // made redundant.
+            searchController.searchBar.delegate = interactor
+        }
+        searchController.searchBar.showsScopeBar = true
+        searchController.searchBar.scopeButtonTitles = FeaturesPresenter.FilterScope.allCases.map { $0.rawValue }
         definesPresentationContext = true
 
         if #available(iOS 11.0, *) {
@@ -56,6 +67,16 @@ import UIKit
             tableView.tableHeaderView = searchController.searchBar
         }
         #endif
+    }
+
+    public override var navigationItem: UINavigationItem {
+        let rightItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(share))
+        super.navigationItem.rightBarButtonItem = rightItem
+        return super.navigationItem
+    }
+
+    @objc func share(sender: UIBarButtonItem) {
+        self.presenter.share(sender: sender)
     }
 }
 
