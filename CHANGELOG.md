@@ -5,6 +5,8 @@
 - Share button added to the UI
 - Add scope bars to the default UI to filter enabled, disabled, and overridden features
 - Search bar supports searching within scopes (see last point) on iOS 13+
+- Fixed all linter issues
+- Support for Swift 4.2 and 5.0 in the pod spec
 
 ## 2.2.0
 - Add function for retrieving currently enabled features as an array of String objects
