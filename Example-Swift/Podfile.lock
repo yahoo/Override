@@ -12,11 +12,11 @@ PODS:
     - Nimble (~> 7.0)
   - Quick (1.3.4)
   - SwiftLint (0.31.0)
-  - YMOverride (2.2.0):
-    - YMOverride/Features (= 2.2.0)
-  - YMOverride/Features (2.2.0)
-  - YMOverrideTestSupport (2.2.0):
-    - YMOverride (= 2.2.0)
+  - YMOverride (2.3.0):
+    - YMOverride/Features (= 2.3.0)
+  - YMOverride/Features (2.3.0)
+  - YMOverrideTestSupport (2.3.0):
+    - YMOverride (= 2.3.0)
 
 DEPENDENCIES:
   - Nimble (~> 7.1)
@@ -46,8 +46,8 @@ SPEC CHECKSUMS:
   Nimble-Snapshots: bbd1ab264bacc24a9ce24a8363bc05aac783aeb0
   Quick: f4f7f063c524394c73ed93ac70983c609805d481
   SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3
-  YMOverride: bd1cfad3410db3417b7abd11a8d33cf2ee612d4b
-  YMOverrideTestSupport: b0dc3ab3186c3675e7fb952aa2d216e8a89ebbd9
+  YMOverride: af298e358410daba641442a835e55ce2bfa12839
+  YMOverrideTestSupport: 18cbe1c7911f916ba7388e894cd4befa9b625886
 
 PODFILE CHECKSUM: 95a086a62473cf6eb853e6253ebe5b16919ec642
 

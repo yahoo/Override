@@ -23,7 +23,7 @@ class FeatureGroupCell: FeatureTableViewCell {
 
             let labelString = NSMutableAttributedString(string: label.unCamelCased)
             let attrs: [AttributedStringKey: Any] = [
-                AttributedStringKey.font: textLabel.font,
+                AttributedStringKey.font: textLabel.font as UIFont,
                 AttributedStringKey.foregroundColor: UIColor.darkGray
             ]
             labelString.addAttributes(attrs, range: NSRange(location: 0, length: labelString.length))
