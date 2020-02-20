@@ -219,7 +219,7 @@ fileprivate extension Collection where Element == LabeledItem {
         case .enabled:
             return filter(enabled: true)
         case .overridden:
-            return filter(overrideStates: Set(arrayLiteral: .enabled, .disabled))
+            return filter(overrideStates: Set([ .enabled, .disabled ]))
         }
     }
 
@@ -240,8 +240,7 @@ fileprivate extension Collection where Element == LabeledItem {
                 }
 
                 accumulator.append(item)
-            }
-            else if let group = item as? LabeledGroupItem {
+            } else if let group = item as? LabeledGroupItem {
                 let filteredFeatures = group.filter(enabled: enabled, overrideStates: overrideStates)
                 if !filteredFeatures.isEmpty {
                     let filteredGroup = LabeledGroupItem(label: item.label, features: Array(filteredFeatures))
