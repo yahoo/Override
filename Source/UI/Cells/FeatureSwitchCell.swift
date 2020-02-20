@@ -26,7 +26,7 @@ class FeatureSwitchCell: FeatureTableViewCell {
 
             let labelString = NSMutableAttributedString(string: label.unCamelCased)
             var attrs: [AttributedStringKey: Any] = [
-                AttributedStringKey.font: textLabel.font,
+                AttributedStringKey.font: textLabel.font as UIFont,
                 AttributedStringKey.foregroundColor: labelColor
             ]
 
@@ -53,7 +53,7 @@ class FeatureSwitchCell: FeatureTableViewCell {
 
             let labelString = NSMutableAttributedString(string: mergedString)
             let attrs: [AttributedStringKey: Any] = [
-                AttributedStringKey.font: detailLabel.font,
+                AttributedStringKey.font: detailLabel.font as UIFont,
                 AttributedStringKey.foregroundColor: UIColor.lightGray
             ]
 

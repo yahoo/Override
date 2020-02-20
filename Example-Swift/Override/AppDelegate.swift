@@ -9,8 +9,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
 
     var window: UIWindow?
 
+    #if swift(>=5.0)
+    typealias LaunchOptionsKeyType = UIApplication.LaunchOptionsKey
+    #else
+    typealias LaunchOptionsKeyType = UIApplicationLaunchOptionsKey
+    #endif
+
     func application(_ application: UIApplication,
-                     didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+                     didFinishLaunchingWithOptions launchOptions: [LaunchOptionsKeyType: Any]?) -> Bool {
         
         guard let tabController = window?.rootViewController as? UITabBarController else { return true }
 
