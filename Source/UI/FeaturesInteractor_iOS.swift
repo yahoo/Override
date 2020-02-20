@@ -101,4 +101,16 @@ extension FeaturesInteractor { /* UITableViewDelegate */
         }
     }
 }
+
+extension UISearchBar {
+    var textForFeatureQuery: String? {
+        if #available(iOS 13, *) {
+            return searchTextField.isEditing ? text : nil
+        } else {
+            // Before iOS 13 the editing state was less explicit. In all versions of iOS, the search
+            // text is "" even when the search bar was never tapped. It isn't ever .none()...
+            return isFirstResponder ? text : nil
+        }
+    }
+}
 #endif
