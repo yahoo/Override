@@ -51,8 +51,8 @@ extension LabeledGroupItem { /* Collection Support */
         return features[position]
     }
 
-    func index(after i: Int) -> Int {
-        return features.index(after: i)
+    func index(after index: Int) -> Int {
+        return features.index(after: index)
     }
 }
 
@@ -141,21 +141,19 @@ extension LabeledGroupItem { /* Collection Support */
             }
         }
     }
-
-
 }
 
 // MARK: Feature Tree Traversal
 extension Collection where Element == LabeledItem {
-    /// This function recursivly traverses through the elements in it's array and returns an array of transformed objects.
+    /// This function recursivly traverses the elements in it's array and returns an array of transformed objects.
     ///
     /// - Parameters:
     ///   - groupItems: Array of `LabelGroupItems` types that keeps track of the parent group items of a feature.
     ///   - resultBuilder: Configuration block for creating the return type at the end of the tree
     ///   - filter: Includes the element if the given predicate is satisfied
     internal func depthFirstCompactMap<T>(groupItems: [LabeledGroupItem] = [],
-        resultBuilder:(([LabeledGroupItem], LabeledFeatureItem) -> T),
-        filter: ((LabeledFeatureItem) -> Bool) = {_ in true }) -> [T] {
+                                          resultBuilder: (([LabeledGroupItem], LabeledFeatureItem) -> T),
+                                          filter: ((LabeledFeatureItem) -> Bool) = {_ in true }) -> [T] {
 
         return self.flatMap { labeledItem -> [T] in
             switch labeledItem {
@@ -163,7 +161,9 @@ extension Collection where Element == LabeledItem {
                 // Traverse into the group and add the group to nextGroupItems
                 var nextGroupItems = groupItems
                 nextGroupItems.append(featureGroup)
-                return featureGroup.depthFirstCompactMap(groupItems: nextGroupItems, resultBuilder: resultBuilder, filter: filter)
+                return featureGroup.depthFirstCompactMap(groupItems: nextGroupItems,
+                                                         resultBuilder: resultBuilder,
+                                                         filter: filter)
             case let feature as LabeledFeatureItem where filter(feature):
                 // For single items, use the result builder to create the required type
                 return [resultBuilder(groupItems, feature)]
@@ -180,7 +180,7 @@ extension Collection where Element == LabeledItem {
         return depthFirstCompactMap(resultBuilder: { (groupStack, feature) -> String in
             let mergedString = groupStack.map { $0.label.unCamelCased }.joined(separator: " → ")
             return mergedString.isEmpty ? feature.description : "\(mergedString) → \(feature)"
-        }) { (featureItem) -> Bool in
+        }, filter: { (featureItem) -> Bool in
             // If enabled flag was provided, filter out non-matches
             if let enabled = enabled, featureItem.feature.enabled != enabled {
                 return false
@@ -188,7 +188,7 @@ extension Collection where Element == LabeledItem {
 
             // If override state was provided, filter out non-matches
             return overrideStates == nil || overrideStateSet.contains(featureItem.feature.override)
-        }
+        })
     }
 
     /// Returns the names for the enabled features in the provided list.

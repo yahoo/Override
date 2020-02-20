@@ -82,7 +82,6 @@ extension FeaturesTableViewController {
         return super.navigationItem
     }
 
-
     @objc func share(sender: UIBarButtonItem) {
         self.presenter.share(sender: sender)
     }
