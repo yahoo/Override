@@ -1,17 +1,17 @@
 PODS:
-  - iOSSnapshotTestCase (5.0.2):
-    - iOSSnapshotTestCase/SwiftSupport (= 5.0.2)
-  - iOSSnapshotTestCase/Core (5.0.2)
-  - iOSSnapshotTestCase/SwiftSupport (5.0.2):
+  - iOSSnapshotTestCase (6.2.0):
+    - iOSSnapshotTestCase/SwiftSupport (= 6.2.0)
+  - iOSSnapshotTestCase/Core (6.2.0)
+  - iOSSnapshotTestCase/SwiftSupport (6.2.0):
     - iOSSnapshotTestCase/Core
-  - Nimble (7.3.4)
-  - Nimble-Snapshots (6.9.1):
-    - Nimble-Snapshots/Core (= 6.9.1)
-  - Nimble-Snapshots/Core (6.9.1):
-    - iOSSnapshotTestCase (~> 5.0)
-    - Nimble (~> 7.0)
-  - Quick (1.3.4)
-  - SwiftLint (0.31.0)
+  - Nimble (8.0.5)
+  - Nimble-Snapshots (8.1.1):
+    - Nimble-Snapshots/Core (= 8.1.1)
+  - Nimble-Snapshots/Core (8.1.1):
+    - iOSSnapshotTestCase (~> 6.0)
+    - Nimble (~> 8.0)
+  - Quick (2.2.0)
+  - SwiftLint (0.39.1)
   - YMOverride (2.3.0):
     - YMOverride/Features (= 2.3.0)
   - YMOverride/Features (2.3.0)
@@ -19,15 +19,15 @@ PODS:
     - YMOverride (= 2.3.0)
 
 DEPENDENCIES:
-  - Nimble (~> 7.1)
-  - Nimble-Snapshots (~> 6.7)
-  - Quick (~> 1.3)
-  - SwiftLint (~> 0.26)
+  - Nimble
+  - Nimble-Snapshots
+  - Quick
+  - SwiftLint
   - YMOverride (from `../`)
   - YMOverrideTestSupport (from `../`)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - iOSSnapshotTestCase
     - Nimble
     - Nimble-Snapshots
@@ -41,14 +41,14 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  iOSSnapshotTestCase: 2d51aa06775e95cecb0a1fb9c5c159ccd1dd4596
-  Nimble: 051e3d8912d40138fa5591c78594f95fb172af37
-  Nimble-Snapshots: bbd1ab264bacc24a9ce24a8363bc05aac783aeb0
-  Quick: f4f7f063c524394c73ed93ac70983c609805d481
-  SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3
+  iOSSnapshotTestCase: 9ab44cb5aa62b84d31847f40680112e15ec579a6
+  Nimble: 4ab1aeb9b45553c75b9687196b0fa0713170a332
+  Nimble-Snapshots: 5058fb9b459e64371f54a0f8d9dde6f33db490a0
+  Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
+  SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
   YMOverride: af298e358410daba641442a835e55ce2bfa12839
   YMOverrideTestSupport: 18cbe1c7911f916ba7388e894cd4befa9b625886
 
-PODFILE CHECKSUM: 95a086a62473cf6eb853e6253ebe5b16919ec642
+PODFILE CHECKSUM: 0c58bf5661f362cbe1a922f8059c6e5de91604f1
 
 COCOAPODS: 1.8.4

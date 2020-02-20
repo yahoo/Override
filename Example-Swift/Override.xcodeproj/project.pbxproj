@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		59A846C63F5212A66186CC63 /* Pods_Override_Example_Override_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3CED889F2F6DF5152709BE /* Pods_Override_Example_Override_Tests.framework */; };
+		2154161901695DA9AB5083FA /* Pods_Override_Example_Override_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE0B7FF9BD52567F1A8356B2 /* Pods_Override_Example_Override_Tests.framework */; };
+		4882BFBEF468BBDD98773146 /* Pods_Override_Example_TV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F333B1306A4DCFC1155F39 /* Pods_Override_Example_TV.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* TestHelpersSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* TestHelpersSpec.swift */; };
-		82E04AA930E6FDC88FBDE263 /* Pods_Override_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49BF07D0F2B1010827068827 /* Pods_Override_Example.framework */; };
-		8FC2E87CED5EC4DA704E2583 /* Pods_Override_Example_TV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CC54DB1DF773A73D720C5BA /* Pods_Override_Example_TV.framework */; };
+		F00E8B9685D74CD820726618 /* Pods_Override_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0920AAD85256C8AA4F132407 /* Pods_Override_Example.framework */; };
 		FC0A3135212E6E7D0064DD5E /* FeaturesViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0A3133212E6E580064DD5E /* FeaturesViewControllerSpec.swift */; };
 		FC321D6E20E1682D000EE23D /* MyFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4D5B2F20DF4FC800689492 /* MyFeatures.swift */; };
 		FC4D5B3020DF4FC800689492 /* MyFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4D5B2F20DF4FC800689492 /* MyFeatures.swift */; };
@@ -42,9 +42,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1CC54DB1DF773A73D720C5BA /* Pods_Override_Example_TV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Override_Example_TV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		49BF07D0F2B1010827068827 /* Pods_Override_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Override_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5D3CED889F2F6DF5152709BE /* Pods_Override_Example_Override_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Override_Example_Override_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0920AAD85256C8AA4F132407 /* Pods_Override_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Override_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		28F333B1306A4DCFC1155F39 /* Pods_Override_Example_TV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Override_Example_TV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CF45143CD2BA8282B331AE3 /* Pods-Override_Example-TV.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Override_Example-TV.release.xcconfig"; path = "Target Support Files/Pods-Override_Example-TV/Pods-Override_Example-TV.release.xcconfig"; sourceTree = "<group>"; };
+		3840453C430991CA1E89F04D /* Pods-Override_Example-Override_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Override_Example-Override_Tests.debug.xcconfig"; path = "Target Support Files/Pods-Override_Example-Override_Tests/Pods-Override_Example-Override_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* Override_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Override_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -55,16 +56,14 @@
 		607FACE51AFB9204008FA782 /* Override_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Override_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* TestHelpersSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpersSpec.swift; sourceTree = "<group>"; };
-		89135546B2DB81A1109E10E1 /* Pods-Override_Example-TV.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Override_Example-TV.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Override_Example-TV/Pods-Override_Example-TV.debug.xcconfig"; sourceTree = "<group>"; };
-		8FF7EB1726DB89CFD9720FF3 /* Pods-Override_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Override_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Override_Example/Pods-Override_Example.release.xcconfig"; sourceTree = "<group>"; };
+		78B636C33C2EFB9F8C8DBDBC /* Pods-Override_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Override_Example.release.xcconfig"; path = "Target Support Files/Pods-Override_Example/Pods-Override_Example.release.xcconfig"; sourceTree = "<group>"; };
 		95E99DEE52ABFEA60967E01C /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		AA690D00943424C115A3DB63 /* Pods-Override_Example-Override_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Override_Example-Override_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Override_Example-Override_Tests/Pods-Override_Example-Override_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		AA6FDF387A56CD7003F13414 /* Pods_Override_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Override_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9693D96D0171078EA6A15137 /* Pods-Override_Example-TV.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Override_Example-TV.debug.xcconfig"; path = "Target Support Files/Pods-Override_Example-TV/Pods-Override_Example-TV.debug.xcconfig"; sourceTree = "<group>"; };
+		AE0B7FF9BD52567F1A8356B2 /* Pods_Override_Example_Override_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Override_Example_Override_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B65E77CA8BE4B8DBFC4566CE /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		B8948B7CBD053673DD68899B /* Pods-Override_Example-TV.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Override_Example-TV.release.xcconfig"; path = "Pods/Target Support Files/Pods-Override_Example-TV/Pods-Override_Example-TV.release.xcconfig"; sourceTree = "<group>"; };
 		C24CE5EB3B782F8A6F2DCEAA /* YMOverride.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = YMOverride.podspec; path = ../YMOverride.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		CCBF3821509952445173837A /* Pods-Override_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Override_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Override_Example/Pods-Override_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		E6C2983A241F1F1B5AC79042 /* Pods-Override_Example-Override_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Override_Example-Override_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Override_Example-Override_Tests/Pods-Override_Example-Override_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		F76242322C69C6F9450FB056 /* Pods-Override_Example-Override_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Override_Example-Override_Tests.release.xcconfig"; path = "Target Support Files/Pods-Override_Example-Override_Tests/Pods-Override_Example-Override_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		F9F4A679F10E738F5A979C50 /* Pods-Override_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Override_Example.debug.xcconfig"; path = "Target Support Files/Pods-Override_Example/Pods-Override_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		FC0A3133212E6E580064DD5E /* FeaturesViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturesViewControllerSpec.swift; sourceTree = "<group>"; };
 		FC4D5B2F20DF4FC800689492 /* MyFeatures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFeatures.swift; sourceTree = "<group>"; };
 		FC58429B21BB2D5100DEF576 /* Override_Example-TV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Override_Example-TV.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,7 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				82E04AA930E6FDC88FBDE263 /* Pods_Override_Example.framework in Frameworks */,
+				F00E8B9685D74CD820726618 /* Pods_Override_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,7 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				59A846C63F5212A66186CC63 /* Pods_Override_Example_Override_Tests.framework in Frameworks */,
+				2154161901695DA9AB5083FA /* Pods_Override_Example_Override_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,13 +103,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8FC2E87CED5EC4DA704E2583 /* Pods_Override_Example_TV.framework in Frameworks */,
+				4882BFBEF468BBDD98773146 /* Pods_Override_Example_TV.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E907BEAD471439105766B54 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F9F4A679F10E738F5A979C50 /* Pods-Override_Example.debug.xcconfig */,
+				78B636C33C2EFB9F8C8DBDBC /* Pods-Override_Example.release.xcconfig */,
+				3840453C430991CA1E89F04D /* Pods-Override_Example-Override_Tests.debug.xcconfig */,
+				F76242322C69C6F9450FB056 /* Pods-Override_Example-Override_Tests.release.xcconfig */,
+				9693D96D0171078EA6A15137 /* Pods-Override_Example-TV.debug.xcconfig */,
+				2CF45143CD2BA8282B331AE3 /* Pods-Override_Example-TV.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
@@ -119,8 +132,8 @@
 				607FACE81AFB9204008FA782 /* Tests */,
 				FC58429C21BB2D5200DEF576 /* TV Example for Override */,
 				607FACD11AFB9204008FA782 /* Products */,
-				B273709E84D178251D69565B /* Pods */,
-				DDBCFC4DB556FBF3CE3E3546 /* Frameworks */,
+				1E907BEAD471439105766B54 /* Pods */,
+				7D5FA6B86BE51BDB8F862BEC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -192,26 +205,12 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
-		B273709E84D178251D69565B /* Pods */ = {
+		7D5FA6B86BE51BDB8F862BEC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CCBF3821509952445173837A /* Pods-Override_Example.debug.xcconfig */,
-				8FF7EB1726DB89CFD9720FF3 /* Pods-Override_Example.release.xcconfig */,
-				AA690D00943424C115A3DB63 /* Pods-Override_Example-Override_Tests.debug.xcconfig */,
-				E6C2983A241F1F1B5AC79042 /* Pods-Override_Example-Override_Tests.release.xcconfig */,
-				89135546B2DB81A1109E10E1 /* Pods-Override_Example-TV.debug.xcconfig */,
-				B8948B7CBD053673DD68899B /* Pods-Override_Example-TV.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		DDBCFC4DB556FBF3CE3E3546 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				49BF07D0F2B1010827068827 /* Pods_Override_Example.framework */,
-				AA6FDF387A56CD7003F13414 /* Pods_Override_Tests.framework */,
-				5D3CED889F2F6DF5152709BE /* Pods_Override_Example_Override_Tests.framework */,
-				1CC54DB1DF773A73D720C5BA /* Pods_Override_Example_TV.framework */,
+				0920AAD85256C8AA4F132407 /* Pods_Override_Example.framework */,
+				AE0B7FF9BD52567F1A8356B2 /* Pods_Override_Example_Override_Tests.framework */,
+				28F333B1306A4DCFC1155F39 /* Pods_Override_Example_TV.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -236,12 +235,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Override_Example" */;
 			buildPhases = (
-				74A4BA36F0DE8DB09CA4E5F2 /* [CP] Check Pods Manifest.lock */,
+				5B2EB6B8B71FC27914000013 /* [CP] Check Pods Manifest.lock */,
 				FC47C71B20F93C8A00693B3C /* ShellScript */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				39A601C3B90FF6B616B72EFE /* [CP] Embed Pods Frameworks */,
+				2C122EECE3984DF94DC4DB9C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -256,10 +255,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Override_Tests" */;
 			buildPhases = (
-				A57A3FFB0E9112911EDD2BD3 /* [CP] Check Pods Manifest.lock */,
+				1572E451F2E0D1436E521835 /* [CP] Check Pods Manifest.lock */,
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
-				DC6C1A3162C17CC1266EF234 /* [CP] Embed Pods Frameworks */,
+				303590E74C75668F15C90DC8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -275,11 +274,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FC5842A921BB2D5300DEF576 /* Build configuration list for PBXNativeTarget "Override_Example-TV" */;
 			buildPhases = (
-				E0F41382C0B4408ED76BD8AB /* [CP] Check Pods Manifest.lock */,
+				FD01461580B252E1B9A5ABA1 /* [CP] Check Pods Manifest.lock */,
 				FC58429721BB2D5100DEF576 /* Sources */,
 				FC58429821BB2D5100DEF576 /* Frameworks */,
 				FC58429921BB2D5100DEF576 /* Resources */,
-				A6E0AB78EB034AFC3C6D677A /* [CP] Embed Pods Frameworks */,
+				01B4C7956454C39980E7BD13 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -312,7 +311,6 @@
 					};
 					FC58429A21BB2D5100DEF576 = {
 						CreatedOnToolsVersion = 10.1;
-						DevelopmentTeam = 2ARNJY38FW;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -361,61 +359,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		39A601C3B90FF6B616B72EFE /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Override_Example/Pods-Override_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/YMOverride-iOS/YMOverride.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YMOverride.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Override_Example/Pods-Override_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		74A4BA36F0DE8DB09CA4E5F2 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Override_Example-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A57A3FFB0E9112911EDD2BD3 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Override_Example-Override_Tests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A6E0AB78EB034AFC3C6D677A /* [CP] Embed Pods Frameworks */ = {
+		01B4C7956454C39980E7BD13 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -433,7 +377,47 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Override_Example-TV/Pods-Override_Example-TV-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DC6C1A3162C17CC1266EF234 /* [CP] Embed Pods Frameworks */ = {
+		1572E451F2E0D1436E521835 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Override_Example-Override_Tests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2C122EECE3984DF94DC4DB9C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Override_Example/Pods-Override_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/YMOverride-iOS/YMOverride.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YMOverride.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Override_Example/Pods-Override_Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		303590E74C75668F15C90DC8 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -461,18 +445,22 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Override_Example-Override_Tests/Pods-Override_Example-Override_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E0F41382C0B4408ED76BD8AB /* [CP] Check Pods Manifest.lock */ = {
+		5B2EB6B8B71FC27914000013 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Override_Example-TV-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Override_Example-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -491,6 +479,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    cd \"${PROJECT_DIR}/../Source\"\n    #\"${PODS_ROOT}/SwiftLint/swiftlint\"\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		FD01461580B252E1B9A5ABA1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Override_Example-TV-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -677,7 +687,7 @@
 		};
 		607FACF01AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CCBF3821509952445173837A /* Pods-Override_Example.debug.xcconfig */;
+			baseConfigurationReference = F9F4A679F10E738F5A979C50 /* Pods-Override_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Override/Info.plist;
@@ -693,7 +703,7 @@
 		};
 		607FACF11AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8FF7EB1726DB89CFD9720FF3 /* Pods-Override_Example.release.xcconfig */;
+			baseConfigurationReference = 78B636C33C2EFB9F8C8DBDBC /* Pods-Override_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Override/Info.plist;
@@ -709,9 +719,10 @@
 		};
 		607FACF31AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AA690D00943424C115A3DB63 /* Pods-Override_Example-Override_Tests.debug.xcconfig */;
+			baseConfigurationReference = 3840453C430991CA1E89F04D /* Pods-Override_Example-Override_Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -727,9 +738,10 @@
 		};
 		607FACF41AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E6C2983A241F1F1B5AC79042 /* Pods-Override_Example-Override_Tests.release.xcconfig */;
+			baseConfigurationReference = F76242322C69C6F9450FB056 /* Pods-Override_Example-Override_Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
@@ -741,7 +753,7 @@
 		};
 		FC5842A721BB2D5300DEF576 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 89135546B2DB81A1109E10E1 /* Pods-Override_Example-TV.debug.xcconfig */;
+			baseConfigurationReference = 9693D96D0171078EA6A15137 /* Pods-Override_Example-TV.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -753,7 +765,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 2ARNJY38FW;
+				DEVELOPMENT_TEAM = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "TV Example for Override/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -770,7 +782,7 @@
 		};
 		FC5842A821BB2D5300DEF576 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B8948B7CBD053673DD68899B /* Pods-Override_Example-TV.release.xcconfig */;
+			baseConfigurationReference = 2CF45143CD2BA8282B331AE3 /* Pods-Override_Example-TV.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -781,7 +793,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2ARNJY38FW;
+				DEVELOPMENT_TEAM = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "TV Example for Override/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -9,10 +9,10 @@ target 'Override_Example' do
   target 'Override_Tests' do
     pod 'YMOverrideTestSupport', :path => '../'
 
-    pod 'Quick', '~>1.3'
-    pod 'Nimble', '~>7.1'
-    pod 'Nimble-Snapshots', '~>6.7'
-    pod 'SwiftLint', '~>0.26'
+    pod 'Quick'
+    pod 'Nimble'
+    pod 'Nimble-Snapshots'
+    pod 'SwiftLint'
   end
 end
 
