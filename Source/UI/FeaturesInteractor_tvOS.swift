@@ -22,4 +22,10 @@ extension FeaturesInteractor { /* UITableViewDelegate */
         }
     }
 }
+
+extension UISearchBar {
+    var textForFeatureQuery: String? {
+        return isFirstResponder ? text : nil
+    }
+}
 #endif

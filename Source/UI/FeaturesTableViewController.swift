@@ -40,6 +40,14 @@ import UIKit
         tableView.delegate = interactor
 
         #if os(iOS)
+        extendedViewDidLoad()
+        #endif
+    }
+}
+
+#if os(iOS) /* iOS-Only Extension */
+extension FeaturesTableViewController {
+    func extendedViewDidLoad() {
         tableView.estimatedRowHeight = 50
 
         // Setup the search/filter interface
@@ -60,13 +68,12 @@ import UIKit
         searchController.searchBar.scopeButtonTitles = FeaturesPresenter.FilterScope.allCases.map { $0.rawValue }
         definesPresentationContext = true
 
-        if #available(iOS 11.0, *) {
+        if #available(iOS 11, *) {
             navigationItem.searchController = searchController
             navigationItem.hidesSearchBarWhenScrolling = false
         } else {
             tableView.tableHeaderView = searchController.searchBar
         }
-        #endif
     }
 
     public override var navigationItem: UINavigationItem {
@@ -75,10 +82,12 @@ import UIKit
         return super.navigationItem
     }
 
+
     @objc func share(sender: UIBarButtonItem) {
         self.presenter.share(sender: sender)
     }
 }
+#endif
 
 // MARK: - Support for direct initialization
 @objc public extension FeaturesTableViewController {

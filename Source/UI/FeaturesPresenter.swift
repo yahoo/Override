@@ -153,6 +153,7 @@ extension FeaturesPresenter { /* UITableViewController Support Methods */
     }
 }
 
+#if os(iOS)
 extension FeaturesPresenter { /* Sharing */
     func share(sender from: UIBarButtonItem) {
         guard let output = output else { return }
@@ -163,6 +164,7 @@ extension FeaturesPresenter { /* Sharing */
         output.present(activityVC, animated: true)
     }
 }
+#endif
 
 // MARK: Filter Support Functions
 

@@ -28,7 +28,7 @@ extension FeaturesInteractor: UISearchResultsUpdating, UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         // In iOS 13, updateSearchResults(for:) in UISearchResultsUpdating is invoked for scope
         // changes, so the logic is handled in there.
-        if #available(iOS 13, *) {
+        if #available(iOS 13, tvOS 13, *) {
             return
         }
 
@@ -55,14 +55,6 @@ extension FeaturesInteractor: UISearchResultsUpdating, UISearchBarDelegate {
             scope = .all
         }
 
-        let query: String?
-        if #available(iOS 13, *) {
-            query = searchBar.searchTextField.isEditing ? searchBar.text : nil
-        } else {
-            // Before iOS 13 the editing state was less explicit. In all versions of iOS, the search
-            // text is "" even when the search bar was never tapped. It isn't ever .none()...
-            query = searchBar.isFirstResponder ? searchBar.text : nil
-        }
-        featuresVC.presenter.filter(featuresVC.tableView, query: query, scope: scope)
+        featuresVC.presenter.filter(featuresVC.tableView, query: searchBar.textForFeatureQuery, scope: scope)
     }
 }
