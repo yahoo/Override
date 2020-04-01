@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'YMOverride'
-    s.version          = '2.3.0'
+    s.version          = '2.3.1'
     s.summary          = 'Simple Swift Feature Flag Managment, From Yahoo'
     s.description      = <<-DESC
     Override helps minimize the boilerplate involved with adding and maintaining feature flags.

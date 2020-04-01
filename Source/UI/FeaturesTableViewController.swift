@@ -42,6 +42,7 @@ import UIKit
         #if os(iOS)
         extendedViewDidLoad()
         #endif
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(share))
     }
 }
 
@@ -74,12 +75,6 @@ extension FeaturesTableViewController {
         } else {
             tableView.tableHeaderView = searchController.searchBar
         }
-    }
-
-    public override var navigationItem: UINavigationItem {
-        let rightItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(share))
-        super.navigationItem.rightBarButtonItem = rightItem
-        return super.navigationItem
     }
 
     @objc func share(sender: UIBarButtonItem) {
