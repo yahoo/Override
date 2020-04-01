@@ -41,8 +41,8 @@ import UIKit
 
         #if os(iOS)
         extendedViewDidLoad()
-        #endif
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(share))
+        #endif
     }
 }
 
