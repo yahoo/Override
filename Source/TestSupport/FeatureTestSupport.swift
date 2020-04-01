@@ -27,7 +27,7 @@ import YMOverride
     func runWithState(state: OverrideState, _ block: () -> Void) {
         let originalStates = features.map { $0.override }
         defer {
-            let originalStates = zip(features, originalStates).map { $0.override = $1 }
+            zip(features, originalStates).forEach { $0.override = $1 }
         }
 
         features.forEach { $0.override = state }
