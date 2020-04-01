@@ -1,5 +1,8 @@
 # Release Notes
 
+## 2.3.1
+- Fixes non-responsive share button issue that arose due to overriding navigationItem in the release of iOS 13.4
+
 ## 2.3.0
 - Ability to copy a readable string with a list of all displayed features, enabled, disabled or overriden features!
 - Share button added to the UI
