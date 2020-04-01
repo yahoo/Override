@@ -41,7 +41,6 @@ import UIKit
 
         #if os(iOS)
         extendedViewDidLoad()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(share))
         #endif
     }
 }
@@ -69,6 +68,7 @@ extension FeaturesTableViewController {
         searchController.searchBar.scopeButtonTitles = FeaturesPresenter.FilterScope.allCases.map { $0.rawValue }
         definesPresentationContext = true
 
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(share))
         if #available(iOS 11, *) {
             navigationItem.searchController = searchController
             navigationItem.hidesSearchBarWhenScrolling = false
