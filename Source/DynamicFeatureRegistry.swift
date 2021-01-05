@@ -21,12 +21,12 @@ import Foundation
         return allFeatures
     }
 
-    /// This method is used to configure and store a dynamic feature. It will attempt to
+    /// This method is used to add a dynamic feature to the store. It will attempt to
     /// assign an `override` value from the FeatureStore if it was previously set and then stores it
     /// locally for future use.
     /// - Parameter feature: A new feature
     /// - Returns: The configured feature
-    public func configureDynamicFeature(feature: AnyFeature) -> AnyFeature {
+    public func add(feature: AnyFeature) -> AnyFeature {
         // Bootstrap the last saved override value, if any
         feature.override = featureStore[feature.key]
 

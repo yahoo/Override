@@ -25,7 +25,7 @@ class DynamicFeatureRegistrySpec: QuickSpec {
                 class TestRegistry: DynamicFeatureRegistry { }
                 let registry = TestRegistry(withFeatureStore: nil)
                 expect(registry.features).to(beEmpty())
-                let _ = registry.configureDynamicFeature(feature: Feature(key: "TEST_1"))
+                let _ = registry.add(feature: Feature(key: "TEST_1"))
                 let featureItem = registry.features.first
                 expect(featureItem?.label).to(equal("TEST_1"))
             }
@@ -38,9 +38,9 @@ class DynamicFeatureRegistrySpec: QuickSpec {
                 let registry = TestRegistry(withFeatureStore: store)
                 expect(registry.features).to(beEmpty())
 
-                let feature1 = registry.configureDynamicFeature(feature: Feature(key: "TEST_1"))
-                let feature2 = registry.configureDynamicFeature(feature: Feature(key: "TEST_2"))
-                let feature3 = registry.configureDynamicFeature(feature: Feature(key: "TEST_3"))
+                let feature1 = registry.add(feature: Feature(key: "TEST_1"))
+                let feature2 = registry.add(feature: Feature(key: "TEST_2"))
+                let feature3 = registry.add(feature: Feature(key: "TEST_3"))
 
                 expect(feature1.override).to(equal(OverrideState.enabled))
                 expect(feature2.override).to(equal(OverrideState.disabled))
@@ -56,8 +56,8 @@ class DynamicFeatureRegistrySpec: QuickSpec {
                 let registry = TestRegistry(withFeatureStore: nil)
                 expect(registry.features.count).to(equal(3))
 
-                let _ = registry.configureDynamicFeature(feature: Feature(key: "TEST_1"))
-                let _ = registry.configureDynamicFeature(feature: Feature(key: "TEST_2"))
+                let _ = registry.add(feature: Feature(key: "TEST_1"))
+                let _ = registry.add(feature: Feature(key: "TEST_2"))
                 expect(registry.features.count).to(equal(5))
             }
         }
