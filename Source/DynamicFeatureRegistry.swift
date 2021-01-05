@@ -16,10 +16,10 @@ import Foundation
             result.append(LabeledFeatureItem(label: feature.key, feature: feature))
         }
         let staticFeatures = super.features
+        /// merge both dynamic and static features
         let allFeatures = dynamicLabeledItems + staticFeatures
         return allFeatures
     }
-
 
     /// This method is used to configure and store a dynamic feature. It will attempt to
     /// assign an `override` value from the FeatureStore if it was previously set and then stores it

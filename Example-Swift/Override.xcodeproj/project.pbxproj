@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		59A846C63F5212A66186CC63 /* Pods_Override_Example_Override_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3CED889F2F6DF5152709BE /* Pods_Override_Example_Override_Tests.framework */; };
+		5F10CD1825A3FABC0055CEC9 /* DynamicFeatureRegistrySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F10CD1325A3FA9B0055CEC9 /* DynamicFeatureRegistrySpec.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -45,6 +46,7 @@
 		1CC54DB1DF773A73D720C5BA /* Pods_Override_Example_TV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Override_Example_TV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49BF07D0F2B1010827068827 /* Pods_Override_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Override_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D3CED889F2F6DF5152709BE /* Pods_Override_Example_Override_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Override_Example_Override_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F10CD1325A3FA9B0055CEC9 /* DynamicFeatureRegistrySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicFeatureRegistrySpec.swift; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* Override_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Override_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				FCAA3B6A2229E6D5009973B8 /* FeaturesTableViewControllerSpec.swift */,
 				FCAA3B6C2229EA89009973B8 /* FeaturesInteractorSpec.swift */,
 				FCF83C3520FFC84E00A6197F /* FeatureRegistrySpec.swift */,
+				5F10CD1325A3FA9B0055CEC9 /* DynamicFeatureRegistrySpec.swift */,
 				FC0A3133212E6E580064DD5E /* FeaturesViewControllerSpec.swift */,
 				FC5842D021BEC71F00DEF576 /* FeatureSwitchCellSpec.swift */,
 				FC5842CD21BEBFB600DEF576 /* OverrideStateSpec.swift */,
@@ -513,6 +516,7 @@
 				FC0A3135212E6E7D0064DD5E /* FeaturesViewControllerSpec.swift in Sources */,
 				FCAA3B6B2229E6D5009973B8 /* FeaturesTableViewControllerSpec.swift in Sources */,
 				FC321D6E20E1682D000EE23D /* MyFeatures.swift in Sources */,
+				5F10CD1825A3FABC0055CEC9 /* DynamicFeatureRegistrySpec.swift in Sources */,
 				FCAA3B6D2229EA89009973B8 /* FeaturesInteractorSpec.swift in Sources */,
 				FC5842D121BEC71F00DEF576 /* FeatureSwitchCellSpec.swift in Sources */,
 				FCF83C3620FFC84E00A6197F /* FeatureRegistrySpec.swift in Sources */,
