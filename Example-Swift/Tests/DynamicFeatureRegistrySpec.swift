@@ -86,8 +86,8 @@ class DynamicFeatureRegistrySpec: QuickSpec {
 
                 do {
                     /// Tests that the method throws. We can't really rely on only the catch because that would just test
-                    /// "did the correct error throw" and not "did this actaully throw".
-                    expect (try registry.add(feature: duplicateFeature) ).to(throwError(DynamicFeatureRegistryError.staticFeatureAlreadyExists) )
+                    /// "did the correct error throw" and not "did this actually throw".
+                    expect(try registry.add(feature: duplicateFeature)).to(throwError(DynamicFeatureRegistryError.staticFeatureAlreadyExists))
                     /// Throw again to clear a warning that the `catch` is never triggered (because the above line handles it).
                     try registry.add(feature: duplicateFeature)
                 } catch {
@@ -108,7 +108,17 @@ class DynamicFeatureRegistrySpec: QuickSpec {
                 try! registry.add(feature: feature1)
                 expect(registry.features.count).to(equal(1))
 
-                try! registry.add(feature: feature2)
+                do {
+                    /// Tests that the method throws. We can't really rely on only the catch because that would just test
+                    /// "did the correct error throw" and not "did this actually throw".
+                    expect(try registry.add(feature: feature2)).to(throwError(DynamicFeatureRegistryError.dynamicFeatureAlreadyExists))
+                    /// Throw again to clear a warning that the `catch` is never triggered (because the above line handles it).
+                    try registry.add(feature: feature2)
+                } catch {
+                    let error = error as? DynamicFeatureRegistryError
+                    expect(error).to(equal(.dynamicFeatureAlreadyExists))
+                }
+
                 expect(registry.features.count).to(equal(1))
 
                 let storedFeature = registry.dynamicFeature(with: "TEST_1")!

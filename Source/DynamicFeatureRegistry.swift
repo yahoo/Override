@@ -5,6 +5,35 @@ import Foundation
 
 public enum DynamicFeatureRegistryError: Error {
     case staticFeatureAlreadyExists
+    case dynamicFeatureAlreadyExists
+}
+
+extension DynamicFeatureRegistryError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .staticFeatureAlreadyExists:
+            return "A static feature with a matching key is already defined."
+        case .dynamicFeatureAlreadyExists:
+            return "A dynamic feature with a matching key is already defined."
+        }
+    }
+
+    public var failureReason: String? {
+        switch self {
+        case .staticFeatureAlreadyExists,
+             .dynamicFeatureAlreadyExists:
+            return "A key can only be mapped to a single feature."
+        }
+    }
+
+    public var recoverySuggestion: String? {
+        switch self {
+        case .staticFeatureAlreadyExists:
+            return "Removing the static feature definition will allow a dynamic feature to be set."
+        case .dynamicFeatureAlreadyExists:
+            return "Using the `forced` parameter when adding a feature will override a dynamic feature."
+        }
+    }
 }
 
 /// DynamicFeatureRegistry a subclass of FeatureRegistry which provides an interface for using
@@ -42,7 +71,9 @@ public enum DynamicFeatureRegistryError: Error {
             throw DynamicFeatureRegistryError.staticFeatureAlreadyExists
         }
         /// If the feature is already stored and `forced` is `false`, there is no reason to contine
-        guard dynamicFeatures[feature.key] == nil || forced else { return }
+        guard dynamicFeatures[feature.key] == nil || forced else {
+            throw DynamicFeatureRegistryError.dynamicFeatureAlreadyExists
+        }
 
         /// Bootstrap the last saved override value, if any
         feature.override = featureStore[feature.key]
