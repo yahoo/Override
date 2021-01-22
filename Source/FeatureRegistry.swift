@@ -78,7 +78,7 @@ extension LabeledGroupItem { /* Collection Support */
     // of this instance (instances of this class), they are guaranteed to exist
     /// for the lifetime of self. It would be an error if a Feature property was
     /// anything other than a 'let' (readonly property).
-    private lazy var featureDidChangeHandler: (BaseFeature) -> Void = { [unowned self] feature in
+    internal lazy var featureDidChangeHandler: (BaseFeature) -> Void = { [unowned self] feature in
         self.featureStore[feature.key] = feature.override
     }
 
