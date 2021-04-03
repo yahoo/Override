@@ -42,7 +42,7 @@ extension DynamicFeatureRegistryError: LocalizedError {
 @objc open class DynamicFeatureRegistry: FeatureRegistry {
 
     /// A local store of the current dynamic features
-    private var dynamicFeatures: [String : AnyFeature] = [:]
+    private var dynamicFeatures: [String: AnyFeature] = [:]
 
     override var features: [LabeledItem] {
 
@@ -60,10 +60,11 @@ extension DynamicFeatureRegistryError: LocalizedError {
     /// locally for future use.
     ///
     /// - Parameter feature: A new feature to add to the store
-    /// - Parameter forced: When `true`, if the provided feature conflicts with an already stored dynamic feature, it will
-    /// replace that feature in the store. If `false`, the new feature is ignored. Default value is `false`.
-    /// - Throws: If the provided feature conflicts with an already defined static feature, an exemption will be thrown and
-    /// it will not be added.
+    /// - Parameter forced: When `true`, if the provided feature conflicts with an already stored
+    /// dynamic feature, it will replace that feature in the store. If `false`, the new feature is ignored. Default
+    /// value is `false`.
+    /// - Throws: If the provided feature conflicts with an already defined static feature, an exemption will
+    ///  be thrown and it will not be added.
     public func add(feature: AnyFeature, forced: Bool = false) throws {
 
         /// We can't add a dynamic feature which conflicts which conflicts with a static one.
