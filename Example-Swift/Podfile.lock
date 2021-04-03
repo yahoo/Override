@@ -27,7 +27,7 @@ DEPENDENCIES:
   - YMOverrideTestSupport (from `../`)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - iOSSnapshotTestCase
     - Nimble
     - Nimble-Snapshots
