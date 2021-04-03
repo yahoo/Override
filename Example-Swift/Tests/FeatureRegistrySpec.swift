@@ -145,6 +145,50 @@ class FeatureRegistrySpec: QuickSpec {
                                                 "feature7"]))
             }
 
+            it("Supports property wrappers") {
+                class TestRegistry: FeatureRegistry {
+                    @FeatureFlag public var feature1
+                    @FeatureFlag public var feature2 = true
+                    @FeatureFlag(key: "FEATURE_3") private var feature3
+                    @FeatureFlag(key: "FEATURE_4", requiresRestart: true, defaultState: true) public var feature4
+                    @DynamicFeatureFlag({ _ in return false }) public var feature5
+                    @DynamicFeatureFlag(key: "FEATURE_6", requiresRestart: true, computedDefault: { _ in return true }) public var feature6
+                }
+
+                let registry = TestRegistry(withFeatureStore: nil)
+                let featureNames = registry.features.map { return $0.label }
+                expect(featureNames).to(equal([ "_feature1",
+                                                "_feature2",
+                                                "_feature3",
+                                                "_feature4",
+                                                "_feature5",
+                                                "_feature6"]))
+
+                expect(registry.feature1).to(beFalse())
+                expect(registry.feature2).to(beTrue())
+                expect(registry.feature4).to(beTrue())
+                expect(registry.feature5).to(beFalse())
+                expect(registry.feature6).to(beTrue())
+
+                expect(registry.$feature1.defaultState).to(be(false))
+                expect(registry.$feature2.defaultState).to(be(true))
+                expect(registry.$feature4.defaultState).to(be(true))
+                expect(registry.$feature5.defaultState).to(be(false))
+                expect(registry.$feature6.defaultState).to(be(true))
+
+                expect(registry.$feature1.key).to(be("_feature1"))
+                expect(registry.$feature2.key).to(be("_feature2"))
+                expect(registry.$feature4.key).to(be("FEATURE_4"))
+                expect(registry.$feature5.key).to(be("_feature5"))
+                expect(registry.$feature6.key).to(be("FEATURE_6"))
+
+                expect(registry.$feature1.requiresRestart).to(be(false))
+                expect(registry.$feature2.requiresRestart).to(be(false))
+                expect(registry.$feature4.requiresRestart).to(be(true))
+                expect(registry.$feature5.requiresRestart).to(be(false))
+                expect(registry.$feature6.requiresRestart).to(be(true))
+            }
+
             it("Extracts features, groups") {
                 class TestRegistry: FeatureRegistry {
                     public let feature1 = Feature()

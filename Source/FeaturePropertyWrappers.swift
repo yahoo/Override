@@ -42,7 +42,7 @@ protocol AnyFeatureFlag {
         projectedValue = Feature(requiresRestart: false, defaultState: wrappedValue)
     }
 
-    public init(wrappedValue: Bool, key: String? = nil, requiresRestart: Bool = false, defaultState: Bool = false) {
+    public init(wrappedValue: Bool = false, key: String? = nil, requiresRestart: Bool = false, defaultState: Bool = false) {
         projectedValue = Feature(key: key, requiresRestart: requiresRestart, defaultState: defaultState)
     }
 }
