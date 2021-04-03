@@ -49,6 +49,9 @@ extension FeatureProvider where Self: FeatureExtractableByMirror {
             case let feature as AnyFeature:
                 //print("Loading feature \(label): \(feature)")
                 allFeatures.append(LabeledFeatureItem(label: label, feature: feature))
+            case let wrappedFeature as Feature1:
+                //print("Loading feature \(label): \(feature)")
+                allFeatures.append(LabeledFeatureItem(label: label, feature: wrappedFeature.projectedValue))
             case let featureGroup as FeatureGroup:
                 //print("Loading feature group: \(label)")
                 let groupFeatures = featureGroup.extractFeatures()

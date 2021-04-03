@@ -24,7 +24,9 @@ import YMOverride
 }
 
 @objc public class MyFeatures: FeatureRegistry { // @objc needed to use @IBOutlet
-    
+
+    @Feature1 var wrapped = true
+
     let theme = ThemeFeatures()
     
     /// This feature will be stored under the key "articlePreviews" because a key
