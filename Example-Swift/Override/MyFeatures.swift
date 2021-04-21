@@ -23,8 +23,9 @@ import YMOverride
     let advanced = ThemeFeatureModes()
 }
 
+/// Example of a feature registry
 @objc public class MyFeatures: FeatureRegistry { // @objc needed to use @IBOutlet
-    
+
     let theme = ThemeFeatures()
     
     /// This feature will be stored under the key "articlePreviews" because a key
@@ -43,6 +44,19 @@ import YMOverride
     /// (Since other parameters are omitted: no restart required; defaults to off)
     let legacyMode = Feature(key: "previousKey")
 
+    /// PropertyWrapper abbreviated idiomatic Swift syntax; Equivalent to
+    /// calling Feature()
+    @FeatureFlag var notificationsEnabled
+
+    /// PropertyWrapper abbreviated idiomatic Swift syntax; Equivalent to
+    /// calling Feature(defaultState: true)
+    @FeatureFlag var onboardingEnabled = true
+
+    /// PropertyWrapper abbreviated idiomatic Swift syntax; Equivalent to
+    /// calling Feature(requiresRestart: true, defaultState: true)
+    /// Additionally, all other Feature arguments are supported including `key: String?`
+    @FeatureFlag(requiresRestart: true) var darkModeEnabled = true
+
     /// This is a "dynamic feature" in that it's default value is comuted on-demand
     /// each time it is needed. This is especially useful when the runtime state
     /// is used to decide on a default, or for remotely controlled defaults.
@@ -58,6 +72,14 @@ import YMOverride
         let components = Calendar.current.dateComponents(Set([.weekday]), from: Date())
         return components.weekday == 3
     }
+
+    /// This is a "dynamic feature" declared by property wrapper. This version does not
+    /// support dirrectly setting the property value to an initial value.
+    @DynamicFeatureFlag({ _ in
+        // This feature defaults to "enabled" only on Wednesdays.
+        let components = Calendar.current.dateComponents(Set([.weekday]), from: Date())
+        return components.weekday == 4
+    }) var wednesdayOnlyModeEnabled
 
     let otherValue: String = "I am not a feature, so I will be ignored"
 }
