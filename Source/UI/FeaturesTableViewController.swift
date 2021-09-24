@@ -96,3 +96,15 @@ extension FeaturesTableViewController {
         self.init(features: featureRegistry.features)
     }
 }
+
+public extension FeaturesTableViewController {
+
+    /// Initialize using a FeatureRegistry directly. This initializer
+    /// allows use of this table view controller without the navigation
+    /// controller provided by FeaturesViewController.
+    ///
+    /// - Parameter featureRegistry: The feature registry to use
+    convenience init(registry: FeatureRegistry) {
+        self.init(features: registry.features)
+    }
+}
