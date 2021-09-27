@@ -1,5 +1,8 @@
 # Release Notes
 
+## 2.4.0
+- Added a new convenience init that accepts a FeatureRegistry to FeaturesTableViewController to work around an assertion in UITableViewController
+
 ## 2.3.1
 - Fixes non-responsive share button issue that arose due to overriding navigationItem in the release of iOS 13.4
 
