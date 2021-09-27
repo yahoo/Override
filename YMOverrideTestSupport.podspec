@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'YMOverrideTestSupport'
-    s.version          = '2.3.1'
+    s.version          = '2.4.0'
     s.summary          = 'Test support helpers for YMOverride feature management'
     s.description      = <<-DESC
     This pod provides test support facilities for the Override pod.
