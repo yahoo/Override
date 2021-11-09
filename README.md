@@ -1,5 +1,7 @@
 # Override
 
+[![CI Status](https://github.com/yahoo/Override/workflows/YMOverride%20CI/badge.svg?branch=master)](https://github.com/yahoo/Override/actions)
+
 ## Table of Contents
 
 - [Background](#background)
@@ -25,6 +27,10 @@ Feature flags typically have 3 states: on, off, or defaulted. The default state 
 CocoaPods is a dependency manager for Cocoa projects. For usage and installation instructions, [visit their website](https://cocoapods.org). To integrate Override into your Xcode project using CocoaPods, specify it in your Podfile:
 
 `pod 'YMOverride', '~> 2.2'`
+
+### SwiftPM
+
+Add `.package(url: "https://github.com/yahoo/Override.git", from: "2.4.0")` to your `package.swift`
 
 ## Usage
 

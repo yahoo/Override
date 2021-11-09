@@ -5,8 +5,7 @@
 
 #import <Expecta/Expecta.h>
 #import <Specta/Specta.h>
-#import <YMOverrideTestSupport/OverrideTestSupport-Swift.h>
-#import <YMOverrideTestSupport/FeatureTestSupport.h>
+@import YMOverrideTestSupport;
 
 SpecBegin(FeatureTestSupport)
 describe(@"Feature Test Support", ^{
