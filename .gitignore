@@ -37,3 +37,8 @@ Carthage/Build
 Pods/
 vendor/
 test_output/
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Package.resolved

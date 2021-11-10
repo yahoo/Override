@@ -16,7 +16,6 @@
 		FC321D5A20DF5D5D000EE23D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC321D5920DF5D5D000EE23D /* Assets.xcassets */; };
 		FC321D5D20DF5D5D000EE23D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC321D5B20DF5D5D000EE23D /* LaunchScreen.storyboard */; };
 		FC321D6020DF5D5D000EE23D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FC321D5F20DF5D5D000EE23D /* main.m */; };
-		FC321D6A20DF6035000EE23D /* Override.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC321D6920DF6035000EE23D /* Override.framework */; };
 		FC321D6D20DF6E4E000EE23D /* MyFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC321D6C20DF6E4E000EE23D /* MyFeatures.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,7 +68,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				32CC128A52909BAD1A324AE4 /* Pods_Example_ObjC.framework in Frameworks */,
-				FC321D6A20DF6035000EE23D /* Override.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
