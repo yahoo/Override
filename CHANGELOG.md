@@ -1,5 +1,8 @@
 # Release Notes
 
+## 2.5.0
+- Add support for Swift Package Manager (SPM)
+
 ## 2.4.0
 - Added a new convenience init that accepts a FeatureRegistry to FeaturesTableViewController to work around an assertion in UITableViewController
 
