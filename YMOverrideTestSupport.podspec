@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'YMOverrideTestSupport'
-    s.version          = '2.4.0'
+    s.version          = '2.5.0'
     s.summary          = 'Test support helpers for YMOverride feature management'
     s.description      = <<-DESC
     This pod provides test support facilities for the Override pod.
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
 
     s.homepage         = 'https://github.com/Yahoo/Override'
     s.license          = { :type => 'MIT', :file => 'LICENSE' }
-    s.author           = { 'Adam Kaplan' => 'adamkaplan@verizonmedia.com', 'David Grandinetti' => 'dbgrandi@verizonmedia.com' }
+    s.author           = { 'Adam Kaplan' => 'adkapx@gmail.com', 'David Grandinetti' => 'dbgrandi@yahooinc.com' }
     s.source           = { :git => 'https://github.com/yahoo/Override.git', :tag => s.version.to_s }
 
     s.ios.deployment_target = '10.0'

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'YMOverride'
-    s.version          = '2.4.0'
+    s.version          = '2.5.0'
     s.summary          = 'Simple Swift Feature Flag Managment, From Yahoo'
     s.description      = <<-DESC
     Override helps minimize the boilerplate involved with adding and maintaining feature flags.
@@ -21,9 +21,8 @@ Pod::Spec.new do |s|
     DESC
 
     s.homepage         = 'https://github.com/Yahoo/Override'
-    # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
     s.license          = { :type => 'MIT', :file => 'LICENSE' }
-    s.author           = { 'Adam Kaplan' => 'adamkaplan@verizonmedia.com', 'David Grandinetti' => 'dbgrandi@verizonmedia.com' }
+    s.author           = { 'Adam Kaplan' => 'adkapx@gmail.com', 'David Grandinetti' => 'dbgrandi@yahooinc.com' }
     s.source           = { :git => 'https://github.com/yahoo/Override.git', :tag => s.version.to_s }
 
     s.ios.deployment_target = '10.0'

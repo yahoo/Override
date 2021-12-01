@@ -30,7 +30,7 @@ CocoaPods is a dependency manager for Cocoa projects. For usage and installation
 
 ### SwiftPM
 
-Add `.package(url: "https://github.com/yahoo/Override.git", from: "2.4.0")` to your `package.swift`
+Add `.package(url: "https://github.com/yahoo/Override.git", from: "2.5.0")` to your `package.swift`
 
 ## Usage
 
