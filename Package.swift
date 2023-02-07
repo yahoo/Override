@@ -12,6 +12,9 @@ let package = Package(
         .library(
             name: "YMOverride",
             targets: ["YMOverride"]),
+        .library(
+            name: "YMOverrideTestSupport",
+            targets: ["YMOverrideTestSupport"]),
     ],
     dependencies: [],
     targets: [
@@ -21,5 +24,11 @@ let package = Package(
             exclude: [
                 "TestSupport"
             ]),
+        .target(
+            name: "YMOverrideTestSupport",
+            dependencies: [
+                "YMOverride"
+            ],
+            path: "Source/TestSupport"),
     ]
 )
