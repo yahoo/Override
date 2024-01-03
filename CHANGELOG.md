@@ -1,5 +1,8 @@
 # Release Notes
 
+### 2.6.0
+- Add YMOverrideTestSupport package to SPM
+
 ## 2.5.0
 - Add support for Swift Package Manager (SPM)
 
