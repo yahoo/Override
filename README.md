@@ -222,13 +222,81 @@ Now using `FConfigFeature` in our feature registry is just more of the same:
 Override ships with a simple table view controller – `FeaturesViewController` – that provides a generic user interface for managing feature flags. The view controller shows a list of available features from a given `FeatureRegistry`. It also allows you to find features using text search. Each feature state is depicted visually, and swipe gestures are installed that allow for convienant feature control.
 
 Feature state is conveyed visually:
-- Overridden *enabled* features are in green
-- Overridden *disabled* features are shown in red
-- Underlined features – which are either green or red – are overriding the defaults
+- Overridden *enabled* features are in green (or custom enabled color if a color provider is specified)
+- Overridden *disabled* features are shown in red (or custom disabled color if a color provider is specified)
+- Underlined features – which are either green or red – are overriding the defaults
 
 Feature state is controlled by gesture:
 - Slide left to reveal the "on" and "off" force overrides
 - Slide right to restore the default state of the feature
+
+#### Customizing Feature State Colors
+
+You can customize the colors used for enabled and disabled feature states by providing a `FeatureStateColorProvider`. This is particularly useful for visually distinguishing between different types of feature flags (e.g., server-side vs client-side flags).
+
+**Using a Closure Provider (Swift):**
+
+```swift
+let colorProvider = ClosureFeatureStateColorProvider { feature in
+    // Distinguish server-side vs client-side flags
+    if feature.key?.hasPrefix("server_") == true {
+        return FeatureStateColors(enabledColor: .blue, disabledColor: .orange)
+    } else if feature.key?.hasPrefix("client_") == true {
+        return FeatureStateColors(enabledColor: .green, disabledColor: .red)
+    } else {
+        return FeatureStateColors.defaultStateColors
+    }
+}
+
+let viewController = FeaturesTableViewController(
+    features: registry.features,
+    colorProvider: colorProvider
+)
+```
+
+**Custom Implementation (Swift):**
+
+```swift
+class MyColorProvider: NSObject, FeatureStateColorProvider {
+    func colors(for feature: AnyFeature) -> FeatureStateColors {
+        // Custom logic based on feature properties
+        if feature.requiresRestart {
+            return FeatureStateColors(enabledColor: .systemYellow, disabledColor: .systemRed)
+        }
+        return FeatureStateColors.defaultStateColors
+    }
+}
+
+let viewController = FeaturesTableViewController(
+    features: registry.features,
+    colorProvider: MyColorProvider()
+)
+```
+
+**Objective-C:**
+
+```objc
+@interface MyColorProvider : NSObject <FeatureStateColorProvider>
+@end
+
+@implementation MyColorProvider
+- (FeatureStateColors *)colorsForFeature:(id<AnyFeature>)feature {
+    if ([feature.key hasPrefix:@"server_"]) {
+        return [[FeatureStateColors alloc] initWithEnabledColor:[UIColor blueColor]
+                                                   disabledColor:[UIColor orangeColor]];
+    }
+    return FeatureStateColors.defaultStateColors;
+}
+@end
+
+MyColorProvider *provider = [[MyColorProvider alloc] init];
+FeaturesTableViewController *vc = [[FeaturesTableViewController alloc] 
+    initWithFeatures:registry.features 
+       colorProvider:provider];
+```
+
+
+If no color provider is specified, the default colors (green for enabled, red for disabled) are used.
 
 #### Support "Restart Required" Features
 
