@@ -15,10 +15,15 @@ import UIKit
 
     let interactor: FeaturesInteractor
 
-    init<C: Collection>(features: C) where C.Element == LabeledItem {
+    let colorProvider: FeatureStateColorProvider
+
+    init<C: Collection>(features: C,
+                        colorProvider: FeatureStateColorProvider? = nil) where C.Element == LabeledItem {
         let arrayFeatures = Array(features)
 
-        presenter = FeaturesPresenter(withFeatures: arrayFeatures)
+        self.colorProvider = colorProvider ?? DefaultFeatureStateColorProvider()
+        presenter = FeaturesPresenter(withFeatures: arrayFeatures,
+                                      colorProvider: self.colorProvider)
         interactor = FeaturesInteractor(withPresenter: presenter)
 
         super.init(style: UITableView.Style.plain)
@@ -91,9 +96,11 @@ extension FeaturesTableViewController {
     /// allows use of this table view controller without the navigation
     /// controller provided by FeaturesViewController.
     ///
-    /// - Parameter featureRegistry: The feature registry to use
-    convenience init(featureRegistry: FeatureRegistry) {
-        self.init(features: featureRegistry.features)
+    /// - Parameters:
+    ///   - featureRegistry: The feature registry to use
+    ///   - colorProvider: Optional color provider for customizing feature state colors
+    convenience init(featureRegistry: FeatureRegistry, colorProvider: FeatureStateColorProvider? = nil) {
+        self.init(features: featureRegistry.features, colorProvider: colorProvider)
     }
 }
 
@@ -103,8 +110,10 @@ public extension FeaturesTableViewController {
     /// allows use of this table view controller without the navigation
     /// controller provided by FeaturesViewController.
     ///
-    /// - Parameter featureRegistry: The feature registry to use
-    convenience init(registry: FeatureRegistry) {
-        self.init(features: registry.features)
+    /// - Parameters:
+    ///   - registry: The feature registry to use
+    ///   - colorProvider: Optional color provider for customizing feature state colors
+    convenience init(registry: FeatureRegistry, colorProvider: FeatureStateColorProvider? = nil) {
+        self.init(features: registry.features, colorProvider: colorProvider)
     }
 }

@@ -15,33 +15,7 @@ class FeatureSwitchCell: FeatureTableViewCell {
     let underlineStyleSingle = NSUnderlineStyle.styleSingle
     #endif
 
-    var labeledFeature: LabeledFeatureItem? {
-        didSet {
-            guard let feature = labeledFeature?.feature,
-                let label = labeledFeature?.label,
-                let textLabel = textLabel
-                else { return }
-
-            let labelColor = feature.enabled ? UIColor.mulah : UIColor.swedishFish
-
-            let labelString = NSMutableAttributedString(string: label.unCamelCased)
-            var attrs: [AttributedStringKey: Any] = [
-                AttributedStringKey.font: textLabel.font as UIFont,
-                AttributedStringKey.foregroundColor: labelColor
-            ]
-
-            // add emphasis if this is locally overridden by underlining the label
-            if feature.override != .featureDefault {
-                attrs[AttributedStringKey.underlineStyle] = underlineStyleSingle.rawValue
-                attrs[AttributedStringKey.underlineColor] = labelColor
-            }
-            labelString.addAttributes(attrs, range: NSRange(location: 0, length: labelString.length))
-
-            textLabel.attributedText = labelString
-
-            self.setNeedsLayout()
-        }
-    }
+    private var labeledFeature: LabeledFeatureItem?
 
     var featurePath: [LabeledGroupItem]? {
         didSet {
@@ -77,5 +51,33 @@ class FeatureSwitchCell: FeatureTableViewCell {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    func configure(with labeledFeature: LabeledFeatureItem?,
+                   colorProvider: FeatureStateColorProvider) {
+        guard let feature = labeledFeature?.feature,
+              let label = labeledFeature?.label,
+              let textLabel = textLabel
+        else { return }
+
+        let colors = colorProvider.colors(for: feature)
+        let labelColor = feature.enabled ? colors.enabledColor : colors.disabledColor
+
+        let labelString = NSMutableAttributedString(string: label.unCamelCased)
+        var attrs: [AttributedStringKey: Any] = [
+            AttributedStringKey.font: textLabel.font as UIFont,
+            AttributedStringKey.foregroundColor: labelColor
+        ]
+
+        // add emphasis if this is locally overridden by underlining the label
+        if feature.override != .featureDefault {
+            attrs[AttributedStringKey.underlineStyle] = underlineStyleSingle.rawValue
+            attrs[AttributedStringKey.underlineColor] = labelColor
+        }
+        labelString.addAttributes(attrs, range: NSRange(location: 0, length: labelString.length))
+
+        textLabel.attributedText = labelString
+
+        self.setNeedsLayout()
     }
 }

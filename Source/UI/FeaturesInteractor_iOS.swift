@@ -33,7 +33,9 @@ extension FeaturesInteractor { /* UITableViewDelegate */
                                                                completion: callback)
         }
 
-        action.backgroundColor = labeledFeature.feature.defaultState ? UIColor.mulah : UIColor.swedishFish
+        let colors = presenter.colorProvider.colors(for: labeledFeature.feature)
+        let backgroundColor = labeledFeature.feature.defaultState ? colors.enabledColor : colors.disabledColor
+        action.backgroundColor = backgroundColor
         return UISwipeActionsConfiguration(actions: [action])
     }
 
@@ -64,8 +66,9 @@ extension FeaturesInteractor { /* UITableViewDelegate */
                                                                    completion: callback)
         }
 
-        enableAction.backgroundColor = UIColor.mulah
-        disableAction.backgroundColor = UIColor.swedishFish
+        let colors = presenter.colorProvider.colors(for: labeledFeature.feature)
+        enableAction.backgroundColor = colors.enabledColor
+        disableAction.backgroundColor = colors.disabledColor
 
         var actions: [UIContextualAction]
         switch labeledFeature.feature.override {

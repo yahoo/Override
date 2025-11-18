@@ -38,7 +38,8 @@ class FeatureInteractorSpec: QuickSpec {
         describe("Feature Registry") {
 
             it("Initializes properly") {
-                let presenter = FeaturesPresenter(withFeatures: [])
+                let presenter = FeaturesPresenter(withFeatures: [],
+                                                  colorProvider: DefaultFeatureStateColorProvider())
                 let interactor = FeaturesInteractor(withPresenter: presenter)
 
                 expect(interactor).to(be(interactor))
@@ -48,7 +49,8 @@ class FeatureInteractorSpec: QuickSpec {
                 let registry = TestRegistry(withFeatureStore: nil)
 
                 context("shouldHighlightRowAt") {
-                    let presenter = FeaturesPresenter(withFeatures:  registry.featureItems)
+                    let presenter = FeaturesPresenter(withFeatures:  registry.featureItems,
+                                                      colorProvider: DefaultFeatureStateColorProvider())
                     let interactor = FeaturesInteractor(withPresenter: presenter)
 
                     it("false for cells") {
@@ -70,7 +72,8 @@ class FeatureInteractorSpec: QuickSpec {
                     var output: UIViewController!
 
                     beforeEach {
-                        presenter = FeaturesPresenter(withFeatures:  registry.featureItems)
+                        presenter = FeaturesPresenter(withFeatures:  registry.featureItems,
+                                                      colorProvider: DefaultFeatureStateColorProvider())
                         interactor = FeaturesInteractor(withPresenter: presenter)
                         testTableView = TestTableView(frame: .zero, style: .plain)
                     }
@@ -137,7 +140,8 @@ class FeatureInteractorIosSpec: QuickSpec {
             let registry = TestRegistry(withFeatureStore: nil)
             var features = registry.featureItems
             features.append(CustomFeature())
-            let presenter = FeaturesPresenter(withFeatures: features)
+            let presenter = FeaturesPresenter(withFeatures: features,
+                                              colorProvider: DefaultFeatureStateColorProvider())
             let interactor = FeaturesInteractor(withPresenter: presenter)
 
             it("does not configure swipe for groups") {
