@@ -27,11 +27,15 @@ class FeaturesPresenter: NSObject, UITableViewDataSource {
 
     var features: [LabeledItem] { filteredFeatures ?? allFeatures }
 
+    let colorProvider: FeatureStateColorProvider
+
     private let allFeatures: [LabeledItem]
     private var filteredFeatures: [LabeledSearchResultItem]?
 
-    init(withFeatures features: [LabeledItem]) {
+    init(withFeatures features: [LabeledItem],
+         colorProvider: FeatureStateColorProvider) {
         self.allFeatures = features
+        self.colorProvider = colorProvider
     }
 
     /// If the feature require restart (see `featuresRequiringRestart`), presents
@@ -77,7 +81,8 @@ extension FeaturesPresenter { /* UITableViewDataSource */
             let cellID = FeaturesTableViewController.FeatureCellIdentifier.switchCell.rawValue
             let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
             if let cell = cell as? FeatureSwitchCell {
-                cell.labeledFeature = item.result
+                cell.configure(with: item.result,
+                               colorProvider: colorProvider)
                 cell.featurePath = item.groupStack
             }
             return cell
@@ -87,7 +92,8 @@ extension FeaturesPresenter { /* UITableViewDataSource */
             let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
 
             if let cell = cell as? FeatureSwitchCell {
-                cell.labeledFeature = labeledItem as? LabeledFeatureItem
+                cell.configure(with: labeledItem as? LabeledFeatureItem,
+                               colorProvider: colorProvider)
             }
             return cell
         }
@@ -140,7 +146,8 @@ extension FeaturesPresenter { /* UITableViewController Support Methods */
 
     func present(_ tableView: UITableView, groupAtIndexPath indexPath: IndexPath) {
         guard let labeledGroup = features[indexPath.row] as? LabeledGroupItem else { return }
-        let groupTableViewController = FeaturesTableViewController(features: labeledGroup)
+        let groupTableViewController = FeaturesTableViewController(features: labeledGroup,
+                                                                   colorProvider: colorProvider)
 
         if let navController = output?.navigationController {
             navController.pushViewController(groupTableViewController, animated: true)
