@@ -1,5 +1,8 @@
 # Release Notes
 
+### 2.7.0
+- Ability to customizable the state colors used in the FeaturesTableViewController
+
 ### 2.6.0
 - Add YMOverrideTestSupport package to SPM
 
